@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: 6e3dcb2264b87ab418786c1dabcfb994
-timeCreated: 1525259715
+guid: e265b390b6e237441bef3feb423d892e
+timeCreated: 1525259716
 licenseType: Free
 ModelImporter:
   serializedVersion: 22
@@ -18,9 +18,8 @@ ModelImporter:
     100020: mouthTopB
     100022: mouthTopC
     100024: mouthTopD
-    100026: PlantArm_geo
-    100028: //RootNode
-    100030: ROOT
+    100026: //RootNode
+    100028: ROOT
     400000: arm1
     400002: arm2
     400004: arm3
@@ -34,14 +33,10 @@ ModelImporter:
     400020: mouthTopB
     400022: mouthTopC
     400024: mouthTopD
-    400026: PlantArm_geo
-    400028: //RootNode
-    400030: ROOT
-    2100000: lambert1
-    2100002: lambert2
-    4300000: PlantArm_geo
+    400026: //RootNode
+    400028: ROOT
+    7400000: Armclose
     9500000: //RootNode
-    13700000: PlantArm_geo
   externalObjects: {}
   materials:
     importMaterials: 1
@@ -68,7 +63,35 @@ ModelImporter:
     animationWrapMode: 0
     extraExposedTransformPaths: []
     extraUserProperties: []
-    clipAnimations: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Armclose
+      takeName: Take 001
+      firstFrame: 1
+      lastFrame: 7
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
     isReadable: 1
   meshes:
     lODScreenPercentages: []
@@ -110,7 +133,7 @@ ModelImporter:
     armStretch: 0.05
     legStretch: 0.05
     feetSpacing: 0
-    rootMotionBoneName: ROOT
+    rootMotionBoneName: 
     rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
     hasTranslationDoF: 0
     hasExtraRoot: 0
