@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour {
 
     public GameObject gameMenu;
+    public GameObject menuHand;
 
 	// Use this for initialization
 	void Start () {
@@ -19,6 +20,7 @@ public class GameManager : MonoBehaviour {
         {
             bool isMenuActice = gameMenu.activeSelf;
             gameMenu.SetActive(!isMenuActice);
+            menuHand.SetActive(!isMenuActice);
         }
 		
 	}
