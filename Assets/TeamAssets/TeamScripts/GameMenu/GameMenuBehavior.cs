@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GuiChangeSceneBehavior : MonoBehaviour {
+public class GameMenuBehavior : MonoBehaviour {
+    public GameObject menu;
 
 	// Use this for initialization
 	void Start () {
@@ -11,6 +12,8 @@ public class GuiChangeSceneBehavior : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+        // if click buttons
+
 		
 	}
 }

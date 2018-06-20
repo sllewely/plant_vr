@@ -5,6 +5,9 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour {
 
+    public GameObject gameMenu;
+    public GameObject menuHand;
+
 	// Use this for initialization
 	void Start () {
 		
@@ -12,7 +15,13 @@ public class GameManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if (Input.getKeyDown())
+        // TODO: input
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            bool isMenuActice = gameMenu.activeSelf;
+            gameMenu.SetActive(!isMenuActice);
+            menuHand.SetActive(!isMenuActice);
+        }
 		
 	}
 }
