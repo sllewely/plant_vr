@@ -12,6 +12,7 @@ public class RedLightGreenLight : MonoBehaviour
     //       and/or indicator that you successfully froze after red light
     public GameObject leftController;
     public GameObject rightController;
+    public AudioSource youmoved;
     private Vector3 lastLeftPosition;
     private Vector3 lastRightPosition;
     //public GameObject hmd;
@@ -23,7 +24,7 @@ public class RedLightGreenLight : MonoBehaviour
 
     //private Vector3 lastposition;
     public float checkTime = 0.5f;
-    public float distanceCheck = 0.005f; // set to checkTime/100?
+    public float distanceCheck = 0.01f; // set to checkTime/50?
     public float lightTime = 3f;
     public int score = 100;
 
@@ -61,6 +62,7 @@ public class RedLightGreenLight : MonoBehaviour
             {
                 score--;
                 Debug.Log("You moved. Score: " + score.ToString());
+                youmoved.Play();
             }
             lastLeftPosition = leftController.transform.position;
             lastRightPosition = rightController.transform.position;
