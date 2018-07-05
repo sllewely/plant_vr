@@ -42,10 +42,8 @@ public class BunnyBehavior : MonoBehaviour {
             {
                 rigidBody.rotation = rotateLeft;
             }
-            Debug.Log("Bunny rotate");
         }
         isGrounded = false;
-        Debug.Log("Bunny jump!!");
         rigidBody.AddForce(jumpVector);
     }
 
@@ -54,11 +52,7 @@ public class BunnyBehavior : MonoBehaviour {
         for (; ; )
         {
             if (isGrounded) {
-                Debug.Log("Grounded!");
                 BunnyJump();
-            } else
-            {
-                Debug.Log("Jumping!");
             }
             yield return new WaitForSeconds(0.5f);
         }
