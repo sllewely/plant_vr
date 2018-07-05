@@ -41,7 +41,7 @@ GameObject:
   - component: {fileID: 54767915456288294}
   m_Layer: 0
   m_Name: Bunny
-  m_TagString: Untagged
+  m_TagString: Prey
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -349,8 +349,8 @@ Rigidbody:
   m_AngularDrag: 0.05
   m_UseGravity: 1
   m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
+  m_Interpolate: 1
+  m_Constraints: 80
   m_CollisionDetection: 0
 --- !u!114 &114806655668660260
 MonoBehaviour:
@@ -364,6 +364,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   onGroundDistance: 0.5
+  isJumping: 0
+  isGrounded: 1
+  hopCycle: 3
+  hopLeft: 1
 --- !u!135 &135376323164085308
 SphereCollider:
   m_ObjectHideFlags: 1
