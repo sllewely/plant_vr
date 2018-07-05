@@ -13,32 +13,17 @@ public class BunnyBehavior : MonoBehaviour {
     public int hopCycle = 3;
     private int currentHop = 0;
     public bool hopLeft = true;
+    Quaternion rotateRight = Quaternion.Euler(new Vector3(0, 50, 0));
+    Quaternion rotateLeft = Quaternion.Euler(new Vector3(0, -50, 0));
 
     private IEnumerator jumpingBunny;
-
 
     // Use this for initialization
     void Start () {
         rigidBody = GetComponent<Rigidbody>();
-        if (IsGrounded())
-        {
-            Debug.Log("bunny on the ground");
-            BunnyJump();
-        } else
-        {
-            Debug.Log("bunny not on the ground");
-        }
-
-        jumpingBunny = JumpingBunny();
-        StartCoroutine(jumpingBunny);
-
+        StartCoroutine(JumpingBunny());
     }
 	
-	// Update is called once per frame
-	void Update () {
-        
-    }
-
     private void OnCollisionStay(Collision collision)
     {
         isGrounded = true;
@@ -52,30 +37,20 @@ public class BunnyBehavior : MonoBehaviour {
             currentHop = hopCycle;
             hopLeft = !hopLeft;
             if (!hopLeft) {
-                Quaternion deltaRotation = Quaternion.Euler(new Vector3(0, 50, 0));
-                rigidBody.rotation = deltaRotation;
-                Debug.Log("Bunny rotate");
+                rigidBody.rotation = rotateRight;
             } else
             {
-                Quaternion deltaRotation = Quaternion.Euler(new Vector3(0, -50, 0));
-                rigidBody.rotation = deltaRotation;
-                Debug.Log("Bunny rotate");
+                rigidBody.rotation = rotateLeft;
             }
-
+            Debug.Log("Bunny rotate");
         }
         isGrounded = false;
         Debug.Log("Bunny jump!!");
         rigidBody.AddForce(jumpVector);
     }
 
-    bool IsGrounded()
-    {
-        return Physics.Raycast(transform.position, Vector3.down, onGroundDistance);
-    }
-
     IEnumerator JumpingBunny()
     {
-        Debug.Log("jimping bunny");
         for (; ; )
         {
             if (isGrounded) {
