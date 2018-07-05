@@ -9,6 +9,7 @@ public class BunnyBehavior : MonoBehaviour {
     Vector3 jumpVector = new Vector3(50f, 100f, 0);
     public float onGroundDistance = 0.5f;
     public bool isJumping = false;
+    public bool isGrounded = true;
 
     private IEnumerator jumpingBunny;
 
@@ -35,8 +36,14 @@ public class BunnyBehavior : MonoBehaviour {
         
     }
 
+    private void OnCollisionStay(Collision collision)
+    {
+        isGrounded = true;
+    }
+
     void BunnyJump()
     {
+        isGrounded = false;
         Debug.Log("Bunny jump!!");
         rigidBody.AddForce(jumpVector);
     }
@@ -51,8 +58,14 @@ public class BunnyBehavior : MonoBehaviour {
         Debug.Log("jimping bunny");
         for (; ; )
         {
-            BunnyJump();
-            yield return new WaitForSeconds(1f);
+            if (isGrounded) {
+                Debug.Log("Grounded!  And jump!");
+                BunnyJump();
+            } else
+            {
+                Debug.Log("Jumping!");
+            }
+            yield return new WaitForSeconds(0.5f);
         }
     }
 }
