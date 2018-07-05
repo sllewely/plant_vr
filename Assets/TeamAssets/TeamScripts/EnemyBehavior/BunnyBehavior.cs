@@ -10,6 +10,9 @@ public class BunnyBehavior : MonoBehaviour {
     public float onGroundDistance = 0.5f;
     public bool isJumping = false;
     public bool isGrounded = true;
+    public int hopCycle = 3;
+    private int currentHop = 0;
+    public bool hopLeft = true;
 
     private IEnumerator jumpingBunny;
 
@@ -43,6 +46,23 @@ public class BunnyBehavior : MonoBehaviour {
 
     void BunnyJump()
     {
+        currentHop--;
+        if (currentHop <= 0)
+        {
+            currentHop = hopCycle;
+            hopLeft = !hopLeft;
+            if (!hopLeft) {
+                Quaternion deltaRotation = Quaternion.Euler(new Vector3(0, 50, 0));
+                rigidBody.rotation = deltaRotation;
+                Debug.Log("Bunny rotate");
+            } else
+            {
+                Quaternion deltaRotation = Quaternion.Euler(new Vector3(0, -50, 0));
+                rigidBody.rotation = deltaRotation;
+                Debug.Log("Bunny rotate");
+            }
+
+        }
         isGrounded = false;
         Debug.Log("Bunny jump!!");
         rigidBody.AddForce(jumpVector);
@@ -59,7 +79,7 @@ public class BunnyBehavior : MonoBehaviour {
         for (; ; )
         {
             if (isGrounded) {
-                Debug.Log("Grounded!  And jump!");
+                Debug.Log("Grounded!");
                 BunnyJump();
             } else
             {
