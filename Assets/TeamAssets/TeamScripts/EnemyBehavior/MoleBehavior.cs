@@ -6,9 +6,9 @@ public class MoleBehavior : MonoBehaviour {
     public enum MoleState { Rest, Raise, Lower }
     public MoleState moleState = MoleState.Raise;
     public float verticalSpeed = 0.5f;
-    public float timeInterval = 2f;
+    public float timeInterval = 1f;
     public Vector3 startPosition;
-    public float randomCircleRadius = 3f;
+    public float randomCircleRadius = 2f;
 
 	// Use this for initialization
 	void Start () {
