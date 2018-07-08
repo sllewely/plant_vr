@@ -9,50 +9,52 @@ public class BunnyBehavior : MonoBehaviour {
     Vector3 jumpVector = new Vector3(50f, 100f, 0);
     public float onGroundDistance = 0.5f;
     public bool isJumping = false;
+    public bool isGrounded = true;
+    public int hopCycle = 3;
+    private int currentHop = 0;
+    public bool hopLeft = true;
+    Quaternion rotateRight = Quaternion.Euler(new Vector3(0, 50, 0));
+    Quaternion rotateLeft = Quaternion.Euler(new Vector3(0, -50, 0));
 
     private IEnumerator jumpingBunny;
-
 
     // Use this for initialization
     void Start () {
         rigidBody = GetComponent<Rigidbody>();
-        if (IsGrounded())
-        {
-            Debug.Log("bunny on the ground");
-            BunnyJump();
-        } else
-        {
-            Debug.Log("bunny not on the ground");
-        }
-
-        jumpingBunny = JumpingBunny();
-        StartCoroutine(jumpingBunny);
-
+        StartCoroutine(JumpingBunny());
     }
 	
-	// Update is called once per frame
-	void Update () {
-        
+    private void OnCollisionStay(Collision collision)
+    {
+        isGrounded = true;
     }
 
     void BunnyJump()
     {
-        Debug.Log("Bunny jump!!");
+        currentHop--;
+        if (currentHop <= 0)
+        {
+            currentHop = hopCycle;
+            hopLeft = !hopLeft;
+            if (!hopLeft) {
+                rigidBody.rotation = rotateRight;
+            } else
+            {
+                rigidBody.rotation = rotateLeft;
+            }
+        }
+        isGrounded = false;
         rigidBody.AddForce(jumpVector);
-    }
-
-    bool IsGrounded()
-    {
-        return Physics.Raycast(transform.position, Vector3.down, onGroundDistance);
     }
 
     IEnumerator JumpingBunny()
     {
-        Debug.Log("jimping bunny");
         for (; ; )
         {
-            BunnyJump();
-            yield return new WaitForSeconds(1f);
+            if (isGrounded) {
+                BunnyJump();
+            }
+            yield return new WaitForSeconds(0.5f);
         }
     }
 }
