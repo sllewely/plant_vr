@@ -990,8 +990,13 @@ Prefab:
     - target: {fileID: 54945932360055304, guid: 6b28ef41037f03c4d91672ccfcbf55dd,
         type: 2}
       propertyPath: m_IsKinematic
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 23986131707164210, guid: 6b28ef41037f03c4d91672ccfcbf55dd,
+        type: 2}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 39376240b96158243840a7b30aa54f20, type: 2}
     m_RemovedComponents:
     - {fileID: 59366490406018556, guid: 6b28ef41037f03c4d91672ccfcbf55dd, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 6b28ef41037f03c4d91672ccfcbf55dd, type: 2}
