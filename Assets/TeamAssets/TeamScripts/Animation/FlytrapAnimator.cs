@@ -33,8 +33,15 @@ public class FlytrapAnimator : MonoBehaviour {
         device = SteamVR_Controller.Input((int)trackedObject.index);
 
         // Get trigger pull amount and map it to blendshape
-        blendLevel = device.GetAxis(EVRButtonId.k_EButton_SteamVR_Trigger).x * 100;
-        skinnedMeshRenderer.SetBlendShapeWeight(0, blendLevel);
+        if (this.transform.parent.GetComponent<Grab>().isHolding)
+        {
+            skinnedMeshRenderer.SetBlendShapeWeight(0, 50);
+        } else
+        {
+            blendLevel = device.GetAxis(EVRButtonId.k_EButton_SteamVR_Trigger).x * 100;
+            skinnedMeshRenderer.SetBlendShapeWeight(0, blendLevel);
+        }
+
 
         // Issues with below: the PressDown vs PressUp seems to happen at a halfway trigger pull
         // and it caused the blendshape to briefly flash open/closed
