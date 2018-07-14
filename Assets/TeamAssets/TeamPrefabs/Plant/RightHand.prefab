@@ -21,6 +21,8 @@ GameObject:
   - component: {fileID: 4612198271603120}
   - component: {fileID: 114126057946412372}
   - component: {fileID: 114902773612722776}
+  - component: {fileID: 65359626600121158}
+  - component: {fileID: 114565439480967458}
   m_Layer: 0
   m_Name: RightHand
   m_TagString: Untagged
@@ -54,8 +56,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1701262450208628}
   m_LocalRotation: {x: -0, y: -0, z: 0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0, z: -0.15}
-  m_LocalScale: {x: 0.010000007, y: 0.010000007, z: 0.01}
+  m_LocalPosition: {x: 0, y: 0, z: -0.12}
+  m_LocalScale: {x: 0.01, y: 0.01, z: 0.01}
   m_Children: []
   m_Father: {fileID: 4612198271603120}
   m_RootOrder: 0
@@ -88,7 +90,7 @@ Rigidbody:
   m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 2
 --- !u!64 &64306572525771324
 MeshCollider:
   m_ObjectHideFlags: 1
@@ -103,6 +105,18 @@ MeshCollider:
   m_CookingOptions: 14
   m_SkinWidth: 0.01
   m_Mesh: {fileID: 4300000, guid: 13cf10d1572ad004ca08cd5d86d512cb, type: 3}
+--- !u!65 &65359626600121158
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1539048106471984}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.2189994, y: 0.1616673, z: 0.036022276}
+  m_Center: {x: 0, y: 0, z: 0.03730087}
 --- !u!114 &114126057946412372
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -116,6 +130,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   index: -1
   origin: {fileID: 0}
+--- !u!114 &114565439480967458
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1539048106471984}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c15193b256b271a46b0264119835efe5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  trackedObject: {fileID: 0}
+  throwSpeed: 2
 --- !u!114 &114612991622797948
 MonoBehaviour:
   m_ObjectHideFlags: 1
