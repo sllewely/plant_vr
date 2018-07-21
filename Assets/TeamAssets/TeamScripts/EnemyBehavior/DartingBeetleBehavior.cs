@@ -57,19 +57,20 @@ public class DartingBeetleBehavior : MonoBehaviour {
 
     void Dart()
     {
-        transform.position = Vector3.Slerp(fromPos, toPos, timeCount / dartTime);
+        transform.position = Vector3.Lerp(fromPos, toPos, timeCount / dartTime);
     }
 
     void Rotate()
     {
-        transform.rotation = Quaternion.Slerp(fromRot, toRot, timeCount/pauseTime);
+        Debug.Log("rotating");
+        transform.rotation = Quaternion.Lerp(fromRot, toRot, timeCount/pauseTime);
     }
 
     void SetToDart()
     {
         dart = true;
         fromPos = transform.position;
-        toPos = (transform.forward * speed);
+        toPos = transform.position + (transform.forward * speed);
         timeCount = 0;
     }
 
