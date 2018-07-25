@@ -19,6 +19,7 @@ public class CloseHandTrigger : MonoBehaviour
     {
         trackedObject = GetComponent<SteamVR_TrackedObject>();
     }
+
     void Update()
     {
         device = SteamVR_Controller.Input((int)trackedObject.index);
@@ -28,7 +29,29 @@ public class CloseHandTrigger : MonoBehaviour
         leftSide.transform.localEulerAngles = new Vector3(0, closeLevel, 0);
         rightSide.transform.localEulerAngles = new Vector3(0, -closeLevel, 0);
 
+
+        // Raycast object detection
+        Vector3 leftDir = leftSide.transform.TransformDirection(new Vector3(1,0,1));
+        Vector3 rightDir = rightSide.transform.TransformDirection(new Vector3(-1, 0, 1));
+
+        RaycastHit leftHit;
+        RaycastHit rightHit;
+
+        Debug.DrawRay(leftSide.GetComponent<Renderer>().bounds.center, leftDir*.1f, Color.yellow, 0.5f);
+        Debug.DrawRay(rightSide.GetComponent<Renderer>().bounds.center, rightDir*.1f, Color.yellow, 0.5f);
+
+        if (Physics.Raycast(leftSide.GetComponent<Renderer>().bounds.center, leftDir, out leftHit, 0.1f) &&
+            Physics.Raycast(rightSide.GetComponent<Renderer>().bounds.center, rightDir, out rightHit, 0.1f) &&
+            leftHit.transform == rightHit.transform)
+        {            
+                print("There is something in front of the object!");
+            Debug.DrawRay(leftSide.GetComponent<Renderer>().bounds.center, leftDir * .1f, Color.blue, 0.5f);
+            Debug.DrawRay(rightSide.GetComponent<Renderer>().bounds.center, rightDir * .1f, Color.blue, 0.5f);
+        }
+        else
+        {
+            Debug.DrawRay(leftSide.GetComponent<Renderer>().bounds.center, leftDir * .1f, Color.yellow, 0.5f);
+            Debug.DrawRay(rightSide.GetComponent<Renderer>().bounds.center, rightDir * .1f, Color.yellow, 0.5f);
+        }
     }
-
-
 }
