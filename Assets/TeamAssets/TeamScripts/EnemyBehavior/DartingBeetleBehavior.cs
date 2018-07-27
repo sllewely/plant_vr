@@ -12,22 +12,16 @@ public class DartingBeetleBehavior : MonoBehaviour {
     float timeCount;
     bool dart;
     bool dartRight;
-    Quaternion rotateRight = Quaternion.Euler(new Vector3(0, 50, 0));
-    Quaternion rotateLeft = Quaternion.Euler(new Vector3(0, -50, 0));
+    Vector3 rotateRight = new Vector3(0, 50, 0);
+    Vector3 rotateLeft = new Vector3(0, -50, 0);
     Vector3 fromPos;
     Vector3 toPos;
-    Quaternion fromRot;
-    Quaternion toRot;
+    Vector3 fromRot;
+    Vector3 toRot;
 
     // Use this for initialization
     void Start () {
-        dart = false;
-        dartRight = true;
-        timeCount = 0;
-        fromRot = rotateLeft;
-        toRot = rotateRight;
-        fromPos = transform.position;
-        toPos = Vector3.forward * speed;
+        SetToDart();
 	}
 	
 	// Update is called once per frame
@@ -63,7 +57,7 @@ public class DartingBeetleBehavior : MonoBehaviour {
     void Rotate()
     {
         Debug.Log("rotating");
-        transform.rotation = Quaternion.Lerp(fromRot, toRot, timeCount/pauseTime);
+        transform.rotation = Quaternion.Lerp(Quaternion.Euler(fromRot), Quaternion.Euler(toRot), timeCount/pauseTime);
     }
 
     void SetToDart()
@@ -78,8 +72,10 @@ public class DartingBeetleBehavior : MonoBehaviour {
     {
         dart = false;
         dartRight = !dartRight;
-        fromRot = Quaternion.Euler(Vector3.forward);
-        toRot = dartRight ? rotateRight : rotateLeft;
+        fromRot = transform.eulerAngles;
+        Debug.Log("Faceing: " + fromRot);
+        toRot = transform.eulerAngles + (dartRight ? rotateRight : rotateLeft);
+        Debug.Log("To rotation: " + toRot);
         timeCount = 0;
     }
 }

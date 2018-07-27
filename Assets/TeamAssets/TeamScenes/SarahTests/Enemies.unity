@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028334, g: 0.22571328, b: 0.3069217, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -238,21 +238,6 @@ Prefab:
     - target: {fileID: 4481525572491228, guid: 715a689e07978a447bb6071af9ddc589, type: 2}
       propertyPath: m_RootOrder
       value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 114901735707632640, guid: 715a689e07978a447bb6071af9ddc589,
-        type: 2}
-      propertyPath: speed
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 114901735707632640, guid: 715a689e07978a447bb6071af9ddc589,
-        type: 2}
-      propertyPath: dartTime
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 114901735707632640, guid: 715a689e07978a447bb6071af9ddc589,
-        type: 2}
-      propertyPath: pauseTime
-      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 715a689e07978a447bb6071af9ddc589, type: 2}
