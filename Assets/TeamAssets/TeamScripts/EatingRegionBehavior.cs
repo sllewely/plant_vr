@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class EatingRegionBehavior : MonoBehaviour {
 
-    public GameObject gameStateObject;
-    public AudioSource omnomnom;
+    // public GameObject gameStateObject;
+    // public AudioSource omnomnom;
 
     void OnTriggerEnter(Collider other)
     {
@@ -13,9 +13,9 @@ public class EatingRegionBehavior : MonoBehaviour {
         // perhaps raw strings like "Prey" should belong to some class
         // and called like other.tag == TeamTags.Prey
         if (other.tag == "Prey") {
-            omnomnom.Play();
+            // omnomnom.Play();
             GameObject prey = other.gameObject;
-            gameStateObject.GetComponent<GameState>().eatSomething(prey);
+            // gameStateObject.GetComponent<GameState>().eatSomething(prey);
             Destroy(prey);
         }
     }
