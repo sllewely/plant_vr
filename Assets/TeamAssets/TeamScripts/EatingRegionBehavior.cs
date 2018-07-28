@@ -7,6 +7,13 @@ public class EatingRegionBehavior : MonoBehaviour {
     // public GameObject gameStateObject;
     // public AudioSource omnomnom;
 
+    Collider collider;
+
+    private void Start()
+    {
+        collider = collider = GetComponent<Collider>();
+    }
+
     private void OnTriggerStay(Collider other)
     {
         Debug.Log("trigger stay");
@@ -28,5 +35,10 @@ public class EatingRegionBehavior : MonoBehaviour {
     private void OnCollisionEnter(Collision collision)
     {
         Debug.Log("collision detected");
+    }
+
+    public bool ContainsPoint(Vector3 position)
+    {
+        return collider.bounds.Contains(position);
     }
 }

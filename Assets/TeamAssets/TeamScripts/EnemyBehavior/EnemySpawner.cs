@@ -13,12 +13,14 @@ public class EnemySpawner : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        StartCoroutine(Spawner());
+        
         startingPos = transform.position;
+        //  StartCoroutine(Spawner());
+        Spawn();
     }
-	
-	// Update is called once per frame
-	void Update () {
+
+    // Update is called once per frame
+    void Update () {
 		
 	}
 
@@ -26,9 +28,14 @@ public class EnemySpawner : MonoBehaviour {
     {
         for ( ; ; )
         {
-            Instantiate(enemy, startingPos, Quaternion.Euler(startingRot));
+            Spawn();
             yield return new WaitForSeconds(timeInterval);
         }
 
+    }
+
+    void Spawn()
+    {
+        Instantiate(enemy, startingPos, Quaternion.Euler(startingRot));
     }
 }
