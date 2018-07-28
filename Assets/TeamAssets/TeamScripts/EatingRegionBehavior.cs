@@ -21,6 +21,10 @@ public class EatingRegionBehavior : MonoBehaviour {
             // omnomnom.Play();
             GameObject prey = other.gameObject;
             // gameStateObject.GetComponent<GameState>().eatSomething(prey);
+            Grab grab = prey.GetComponentInParent<Grab>();
+            if(grab != null)
+                grab.isHolding = false;
+
             Destroy(prey);
         }
     }
