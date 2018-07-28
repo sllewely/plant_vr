@@ -1,11 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2017
+# Visual Studio 15
+VisualStudioVersion = 15.0.26730.15
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "plant_vr", "plant_vr.csproj", "{3EFBCC1A-D16D-CB50-A3C7-7880B3B4AD17}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "plant_vr.Editor", "plant_vr.Editor.csproj", "{FFB8274C-6A75-A8B8-372B-8F38A4857C55}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "plant_vr.Editor", "plant_vr.Editor.csproj", "{FFB8274C-6A75-A8B8-372B-8F38A4857C55}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "plant_vr.Editor", "plant_vr.Editor.csproj", "{FFB8274C-6A75-A8B8-372B-8F38A4857C55}"
 EndProject
@@ -23,16 +21,11 @@ Global
 		{FFB8274C-6A75-A8B8-372B-8F38A4857C55}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FFB8274C-6A75-A8B8-372B-8F38A4857C55}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FFB8274C-6A75-A8B8-372B-8F38A4857C55}.Release|Any CPU.Build.0 = Release|Any CPU
-		{FFB8274C-6A75-A8B8-372B-8F38A4857C55}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{FFB8274C-6A75-A8B8-372B-8F38A4857C55}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{FFB8274C-6A75-A8B8-372B-8F38A4857C55}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{FFB8274C-6A75-A8B8-372B-8F38A4857C55}.Release|Any CPU.Build.0 = Release|Any CPU
-		{FFB8274C-6A75-A8B8-372B-8F38A4857C55}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{FFB8274C-6A75-A8B8-372B-8F38A4857C55}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{FFB8274C-6A75-A8B8-372B-8F38A4857C55}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{FFB8274C-6A75-A8B8-372B-8F38A4857C55}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {343CF5C4-2FF3-4663-B989-EE506F65C950}
 	EndGlobalSection
 EndGlobal

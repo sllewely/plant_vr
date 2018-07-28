@@ -75,4 +75,9 @@ public class DartingBeetleBehavior : MonoBehaviour {
         toRot = transform.eulerAngles + (dartRight ? rotateRight : rotateLeft);
         timeCount = 0;
     }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        Debug.Log("beetle collided");
+    }
 }
