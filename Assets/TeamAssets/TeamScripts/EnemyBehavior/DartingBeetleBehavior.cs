@@ -56,7 +56,6 @@ public class DartingBeetleBehavior : MonoBehaviour {
 
     void Rotate()
     {
-        Debug.Log("rotating");
         transform.rotation = Quaternion.Lerp(Quaternion.Euler(fromRot), Quaternion.Euler(toRot), timeCount/pauseTime);
     }
 
@@ -73,9 +72,7 @@ public class DartingBeetleBehavior : MonoBehaviour {
         dart = false;
         dartRight = !dartRight;
         fromRot = transform.eulerAngles;
-        Debug.Log("Faceing: " + fromRot);
         toRot = transform.eulerAngles + (dartRight ? rotateRight : rotateLeft);
-        Debug.Log("To rotation: " + toRot);
         timeCount = 0;
     }
 }
