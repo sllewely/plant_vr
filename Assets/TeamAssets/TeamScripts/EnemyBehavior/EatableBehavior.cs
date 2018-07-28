@@ -3,24 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class EatableBehavior : MonoBehaviour {
-    GameObject eatingRegion;
-    Collider eatingRegionCollider;
+    // the points this prey is worth
+    public int points;
 
 	// Use this for initialization
 	void Start () {
-        GameObject eatingRegion = GameObject.FindGameObjectsWithTag("EatingRegion")[0];
-        eatingRegionCollider = eatingRegion.GetComponent<Collider>();
-        //Debug.Log("eatingRegion: " + eatingRegion.name);
-        //Debug.Log("bounds: " + eatingRegionCollider.bounds);
-
     }
 	
 	// Update is called once per frame
 	void Update () {
-        if (InEatingRegion())
-        {
-            Debug.Log(gameObject.name + " eatable in region");
-        }
 		
 	}
 
@@ -29,18 +20,10 @@ public class EatableBehavior : MonoBehaviour {
         Debug.Log("beetle trigger in region " + other.gameObject.name);
         if (other.tag == "EatableRegion")
         {
-
+            // Add the score
+            // Delete the object
+            // Deactivate the hand
         }
     }
 
-    private void OnCollisionEnter(Collision collision)
-    {
-        Debug.Log("beetle collision in region" + collision.gameObject.name);
-    }
-
-    private bool InEatingRegion()
-    {
-       // Debug.Log("bounds: " + eatingRegionCollider.bounds + " for position: " + transform.position);
-        return eatingRegionCollider.bounds.Contains(transform.position);
-    }
 }
