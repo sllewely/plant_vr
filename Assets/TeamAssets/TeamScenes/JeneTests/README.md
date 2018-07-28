@@ -1,3 +1,9 @@
+7/28
+-Created a Master Scene folder, with my environment. Please build in this!
+-Scaled up/rearranged flowerbed so all grabbing can take place in this area
+-All objects in flower + floor/house are now static meshes with colliders
+-updated geometry on flowerpots so they're smoother
+
 7/27
 -Beetle_still in prefabs
 -Beetle_walk in prefabs
