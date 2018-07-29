@@ -18,12 +18,11 @@ public class EatableBehavior : MonoBehaviour {
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("beetle trigger in region " + other.gameObject.name);
         if (other.tag == "EatingRegion")
         {
             Debug.Log("Beetle Eatable inside of EatableRegion");
             // Add the score
-            gameManager.GetComponent<GameState>().EatSomething(gameObject);
+            gameManager.GetComponent<GameManager>().EatSomething(gameObject);
             // Deactivate the hand
 
             Destroy(gameObject);

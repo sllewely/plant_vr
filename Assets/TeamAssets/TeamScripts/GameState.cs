@@ -4,16 +4,22 @@ using UnityEngine;
 
 public class GameState : MonoBehaviour {
 
-    int thingsEatenCounter = 0;
+    int thingsEatenCounter;
     int score;
-    public int health;
+    int health;
     public GameObject gameUi;
 
-    private void Start()
+    private void Awake()
     {
         score = 0;
         thingsEatenCounter = 0;
         health = 3;
+        Debug.Log("start with score: " + score);
+    }
+
+    private void Start()
+    {
+
     }
 
     public void EatSomething(GameObject theThing)
