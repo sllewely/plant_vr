@@ -5,11 +5,15 @@ using UnityEngine;
 public class GameState : MonoBehaviour {
 
     public int thingsEatenCounter = 0;
+    public int score;
+    public int health;
 
-    public void eatSomething(GameObject theThing)
+    public void EatSomething(GameObject theThing)
     {
         // I'm imaginging something like score += theThing.pointValue
         thingsEatenCounter += 1;
-        Debug.Log("wow I ate " + thingsEatenCounter + " things!");
+        EatableBehavior eatableBehavior = theThing.GetComponent<EatableBehavior>();
+        score += eatableBehavior.points;
+        Debug.Log("wow I ate " + thingsEatenCounter + " things and have " + score + "points");
     }
 }

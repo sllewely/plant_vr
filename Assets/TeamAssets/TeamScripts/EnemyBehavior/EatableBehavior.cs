@@ -5,6 +5,7 @@ using UnityEngine;
 public class EatableBehavior : MonoBehaviour {
     // the points this prey is worth
     public int points;
+    public GameManager gameManager;
 
 	// Use this for initialization
 	void Start () {
@@ -18,8 +19,10 @@ public class EatableBehavior : MonoBehaviour {
     private void OnTriggerEnter(Collider other)
     {
         Debug.Log("beetle trigger in region " + other.gameObject.name);
-        if (other.tag == "EatableRegion")
+        if (other.tag == "EatingRegion")
         {
+            Debug.Log("Beetle Eatable inside of EatableRegion");
+            gameManager.GetComponent<GameState>().EatSomething(gameObject);
             // Add the score
             // Delete the object
             // Deactivate the hand
