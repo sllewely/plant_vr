@@ -22,10 +22,11 @@ public class EatableBehavior : MonoBehaviour {
         if (other.tag == "EatingRegion")
         {
             Debug.Log("Beetle Eatable inside of EatableRegion");
-            gameManager.GetComponent<GameState>().EatSomething(gameObject);
             // Add the score
-            // Delete the object
+            gameManager.GetComponent<GameState>().EatSomething(gameObject);
             // Deactivate the hand
+
+            Destroy(gameObject);
         }
     }
 
