@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class GameState : MonoBehaviour {
 
-    public int thingsEatenCounter = 0;
-    public int score;
+    int thingsEatenCounter = 0;
+    int score;
     public int health;
+    public GameObject gameUi;
 
     private void Start()
     {
@@ -21,6 +22,13 @@ public class GameState : MonoBehaviour {
         thingsEatenCounter += 1;
         EatableBehavior eatableBehavior = theThing.GetComponent<EatableBehavior>();
         score += eatableBehavior.points;
+        SetScoreUi();
         Debug.Log("wow I ate " + thingsEatenCounter + " things and have " + score + "points");
+    }
+
+    private void SetScoreUi()
+    {
+        gameUi = GameObject.Find("ScreenUi");
+        gameUi.GetComponent<ScoreTextBehavior>().SetScore(score);
     }
 }
