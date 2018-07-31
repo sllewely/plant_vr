@@ -5,10 +5,11 @@ using UnityEngine;
 public class EatableBehavior : MonoBehaviour {
     // the points this prey is worth
     public int points;
-    public GameManager gameManager;
+    GameObject gameManager;
 
 	// Use this for initialization
 	void Start () {
+        gameManager = GameObject.Find("GameManager");
     }
 	
 	// Update is called once per frame

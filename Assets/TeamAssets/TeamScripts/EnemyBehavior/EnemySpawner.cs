@@ -16,7 +16,7 @@ public class EnemySpawner : MonoBehaviour {
         
         startingPos = transform.position;
         //  StartCoroutine(Spawner());
-        Spawn();
+        StartCoroutine(Spawner());
     }
 
     // Update is called once per frame
