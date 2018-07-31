@@ -25,6 +25,9 @@ public class EatableBehavior : MonoBehaviour {
             // Add the score
             gameManager.GetComponent<GameState>().EatSomething(gameObject);
             // Deactivate the hand
+            Grab grab = GetComponentInParent<Grab>();
+            if (grab != null)
+                grab.isHolding = false;
 
             Destroy(gameObject);
         }

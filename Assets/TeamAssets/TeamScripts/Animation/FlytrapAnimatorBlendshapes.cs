@@ -4,7 +4,7 @@ using UnityEngine;
 using Valve.VR;
 
 
-public class FlytrapAnimator : MonoBehaviour {
+public class FlytrapAnimatorBlendshapes : MonoBehaviour {
 
     private SteamVR_Controller.Device device;
     private SteamVR_TrackedObject trackedObject;
