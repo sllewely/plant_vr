@@ -30,6 +30,10 @@ public class GameManager : MonoBehaviour {
             LoseLife();   
         }
 		
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            RestartGame();
+        }
 	}
 
     void LoseLife()
@@ -56,9 +60,14 @@ public class GameManager : MonoBehaviour {
         return lives <= 0;
     }
 
-    private void SetGameOver()
+    void SetGameOver()
     {
         gameOver.SetActive(true);
+    }
+
+    void RestartGame()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name, LoadSceneMode.Single);
     }
 
     void ToggleMenu()
