@@ -4,18 +4,9 @@ using UnityEngine;
 
 public class GameState : MonoBehaviour {
 
-    int thingsEatenCounter;
-    int score;
-    int health;
-    public GameObject gameUi;
-
-    private void Awake()
-    {
-        score = 0;
-        thingsEatenCounter = 0;
-        health = 3;
-        Debug.Log("start with score: " + score);
-    }
+    int thingsEatenCounter = 0;
+    int score = 0;
+    int health = 3;
 
     private void Start()
     {
@@ -34,7 +25,7 @@ public class GameState : MonoBehaviour {
 
     private void SetScoreUi()
     {
-        gameUi = GameObject.Find("ScreenUi");
+        GameObject gameUi = GameObject.Find("ScreenUi");
         gameUi.GetComponent<ScoreTextBehavior>().SetScore(score);
     }
 }

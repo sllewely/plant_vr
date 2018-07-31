@@ -22,7 +22,7 @@ public class EatableBehavior : MonoBehaviour {
         {
             Debug.Log("Beetle Eatable inside of EatableRegion");
             // Add the score
-            gameManager.GetComponent<GameManager>().EatSomething(gameObject);
+            gameManager.GetComponent<GameState>().EatSomething(gameObject);
             // Deactivate the hand
 
             Destroy(gameObject);
