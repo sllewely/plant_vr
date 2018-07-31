@@ -8,6 +8,8 @@ public class GameManager : MonoBehaviour {
     public GameObject gameMenu;
     public GameObject menuHand;
 
+    public GameObject gameOver;
+
     int lives;
     Vector3 offset = new Vector3(0, 0.5f, 0);
 
@@ -43,11 +45,20 @@ public class GameManager : MonoBehaviour {
         Transform plantPosition = plantToKill.transform;
         Instantiate(deadPlantPrefab, plantPosition.position + offset, plantPosition.rotation);
         Destroy(plantToKill);
+        if (IsDead())
+        {
+            SetGameOver();
+        }
     }
 
     bool IsDead()
     {
         return lives <= 0;
+    }
+
+    private void SetGameOver()
+    {
+        gameOver.SetActive(true);
     }
 
     void ToggleMenu()
