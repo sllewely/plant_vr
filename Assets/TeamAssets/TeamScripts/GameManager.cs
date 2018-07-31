@@ -7,16 +7,73 @@ public class GameManager : MonoBehaviour {
 
     public GameObject gameMenu;
     public GameObject menuHand;
-	
-	// Update is called once per frame
-	void Update () {
+
+    public GameObject gameOver;
+
+    int lives;
+    Vector3 offset = new Vector3(0, 0.5f, 0);
+
+    // Plants that represent lives
+    public GameObject[] plantLives;
+    public GameObject deadPlantPrefab;
+
+    private void Start()
+    {
+        lives = plantLives.Length;
+    }
+
+    // Update is called once per frame
+    void Update () {
         // TODO: input
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            bool isMenuActice = gameMenu.activeSelf;
-            gameMenu.SetActive(!isMenuActice);
-            menuHand.SetActive(!isMenuActice);
+            LoseLife();   
         }
 		
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            RestartGame();
+        }
 	}
+
+    void LoseLife()
+    {
+        if (IsDead())
+        {
+            Debug.LogWarning("Already dead! Lives: " + lives);
+            return;
+        }
+
+        lives--;
+        GameObject plantToKill = plantLives[lives];
+        Transform plantPosition = plantToKill.transform;
+        Instantiate(deadPlantPrefab, plantPosition.position + offset, plantPosition.rotation);
+        Destroy(plantToKill);
+        if (IsDead())
+        {
+            SetGameOver();
+        }
+    }
+
+    bool IsDead()
+    {
+        return lives <= 0;
+    }
+
+    void SetGameOver()
+    {
+        gameOver.SetActive(true);
+    }
+
+    void RestartGame()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name, LoadSceneMode.Single);
+    }
+
+    void ToggleMenu()
+    {
+        bool isMenuActice = gameMenu.activeSelf;
+        gameMenu.SetActive(!isMenuActice);
+        menuHand.SetActive(!isMenuActice);
+    }
 }
