@@ -16,10 +16,15 @@ public class GameState : MonoBehaviour {
     public void EatSomething(GameObject theThing)
     {
         // I'm imaginging something like score += theThing.pointValue
-        thingsEatenCounter += 1;
+        this.thingsEatenCounter += 1;
         EatableBehavior eatableBehavior = theThing.GetComponent<EatableBehavior>();
-        score += eatableBehavior.points;
+        this.score += eatableBehavior.points;
         SetScoreUi();
+        PrintScore();
+    }
+
+    public void PrintScore()
+    {
         Debug.Log("wow I ate " + thingsEatenCounter + " things and have " + score + "points");
     }
 
