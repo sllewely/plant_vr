@@ -29,9 +29,12 @@ public class Grab : MonoBehaviour {
                 Collider boxcol = this.GetComponent<BoxCollider>();
                 col.gameObject.transform.position = grabSpot.transform.position;
                 isHolding = true;
+                col.gameObject.GetComponent<MonoBehaviour>().enabled = false;
             }
             if (device.GetPressUp(SteamVR_Controller.ButtonMask.Trigger))
             {
+                //TODO: turn script back on 
+                //OR turn off isKinematic, turn on gravity
                 col.gameObject.GetComponent<Rigidbody>().isKinematic = false;
                 col.gameObject.transform.SetParent(null);
                 TossObject(col.attachedRigidbody);
