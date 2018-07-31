@@ -52,7 +52,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c75847d6620965c42a0e700ade6d3e26, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  thingsEatenCounter: 0
+  gameUi: {fileID: 0}
 --- !u!114 &114574270347711434
 MonoBehaviour:
   m_ObjectHideFlags: 1
