@@ -5,7 +5,7 @@ using Valve.VR;
 // Tilt the cube using the arrow keys.  When the arrow keys are released
 // the cube will be rotated back to the center using Slerp.
 
-public class CloseHandTrigger : MonoBehaviour
+public class FlytrapHandAnimator : MonoBehaviour
 {
 
     public SteamVR_TrackedObject trackedObject;
@@ -24,10 +24,9 @@ public class CloseHandTrigger : MonoBehaviour
     void Update()
     {
         device = SteamVR_Controller.Input((int)trackedObject.index);
-
-        if (this.transform.parent.GetComponent<Grab>().isHolding)
+        if (GetComponent<Grab>().isHolding)
         {
-            closeLevel = 0f;
+            closeLevel = 15f;
         } else {
             closeLevel = device.GetAxis(EVRButtonId.k_EButton_SteamVR_Trigger).x * 45;
         }
