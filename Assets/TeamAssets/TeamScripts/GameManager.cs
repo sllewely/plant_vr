@@ -5,6 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour {
 
+    public float timeLimit;
+
     public GameObject gameMenu;
     public GameObject menuHand;
 
@@ -30,9 +32,15 @@ public class GameManager : MonoBehaviour {
             LoseLife();   
         }
 		
-        if (Input.GetKeyDown(KeyCode.Q))
+        if (Input.GetKeyDown(KeyCode.R))
         {
             RestartGame();
+        }
+
+        if (Time.time > timeLimit)
+        {
+            Debug.Log("Time is up!");
+            SetGameOver();
         }
 	}
 
