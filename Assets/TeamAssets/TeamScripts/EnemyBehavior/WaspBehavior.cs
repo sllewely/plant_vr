@@ -11,7 +11,9 @@ public class WaspBehavior : MonoBehaviour {
 
     public float circleSpeed;
     public float forwardSpeed;
-    public float circleSize = 1;
+    public float xWaver;
+    public float yWaver;
+    //public float circleSize = 1;
     // var circleGrowSpeed = 0.1;
 
 
@@ -40,8 +42,8 @@ public class WaspBehavior : MonoBehaviour {
     void Move()
     {
         cycleTime += Time.deltaTime;
-        var xPos = startPos.x + Mathf.Sin(cycleTime * circleSpeed) * circleSize;
-        var yPos = startPos.y + Mathf.Cos(cycleTime * circleSpeed) * circleSize;
+        var xPos = startPos.x + Mathf.Sin(cycleTime * circleSpeed) * xWaver;
+        var yPos = startPos.y + Mathf.Cos(cycleTime * circleSpeed) * yWaver;
         var zPos = transform.position.z + (Time.deltaTime * forwardSpeed);
         transform.position = new Vector3(xPos, yPos, zPos);
     }

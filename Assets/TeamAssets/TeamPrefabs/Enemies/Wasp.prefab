@@ -135,7 +135,7 @@ GameObject:
   - component: {fileID: 114363806972578222}
   - component: {fileID: 135770510969165444}
   - component: {fileID: 54319265008092852}
-  - component: {fileID: 114934759519198480}
+  - component: {fileID: 114104475249899516}
   m_Layer: 0
   m_Name: Wasp
   m_TagString: Prey
@@ -948,19 +948,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &114363806972578222
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1509208976571362}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d2baef989ca683e448b28a591c1eef0c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  points: 10
---- !u!114 &114934759519198480
+--- !u!114 &114104475249899516
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -973,7 +961,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   circleSpeed: 3
   forwardSpeed: 0.5
-  circleSize: 0.2
+  xWaver: 0
+  yWaver: 0.5
+--- !u!114 &114363806972578222
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1509208976571362}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2baef989ca683e448b28a591c1eef0c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  points: 10
 --- !u!135 &135770510969165444
 SphereCollider:
   m_ObjectHideFlags: 1
