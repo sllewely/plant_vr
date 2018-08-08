@@ -41,7 +41,7 @@ public class MoleBehavior : MonoBehaviour {
     {
         Vector2 randomCirclePos = Random.insideUnitCircle * randomCircleRadius;
         transform.position = startPosition + new Vector3(randomCirclePos.x, 0, randomCirclePos.y);
-        Debug.Log("new position is " + transform.position);
+        // Debug.Log("new position is " + transform.position);
     }
 
     IEnumerator MoleMove()
@@ -49,7 +49,7 @@ public class MoleBehavior : MonoBehaviour {
         for (int i = 0; true; i = (i + 1) % 3)
         {
             moleState = (MoleState)i;
-            Debug.Log("mole state is " + moleState);
+            // Debug.Log("mole state is " + moleState);
             if (moleState == MoleState.Rest) {
                 NewLocation();
             }
