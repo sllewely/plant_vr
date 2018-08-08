@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4195829610774446}
   - component: {fileID: 114116051825599738}
   m_Layer: 0
-  m_Name: EnemySpawner
+  m_Name: WaspSpawner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -52,5 +52,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startingRot: {x: 0, y: 180, z: 0}
-  timeInterval: 5
-  enemy: {fileID: 1406429920336730, guid: 715a689e07978a447bb6071af9ddc589, type: 2}
+  timeInterval: 1
+  timeToDestroy: 15
+  enemy: {fileID: 1509208976571362, guid: 73b6a98a47a25324a94d5a20051d851c, type: 2}
