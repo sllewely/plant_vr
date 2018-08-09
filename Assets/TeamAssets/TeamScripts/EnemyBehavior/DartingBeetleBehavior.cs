@@ -4,7 +4,7 @@ using UnityEngine;
 
 
 
-public class DartingBeetleBehavior : MonoBehaviour {
+public class DartingBeetleBehavior : PreyBehavior {
 
     public float speed;
     public float dartTime;
@@ -20,12 +20,12 @@ public class DartingBeetleBehavior : MonoBehaviour {
     Vector3 toRot;
 
     // Use this for initialization
-    void Start () {
+    public override void Setup () {
         SetToDart();
 	}
-	
-	// Update is called once per frame
-	void Update () {
+
+    public override void Act()
+    {
         timeCount = timeCount + Time.deltaTime;
         if (dart)
         {
@@ -34,7 +34,8 @@ public class DartingBeetleBehavior : MonoBehaviour {
             {
                 SetToRotate();
             }
-        } else
+        }
+        else
         {
             Rotate();
             if (timeCount > pauseTime)
