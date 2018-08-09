@@ -20,7 +20,7 @@ public class DartingBeetleBehavior : PreyBehavior {
     Vector3 toRot;
 
     // Use this for initialization
-    void Start () {
+    public override void Setup () {
         SetToDart();
 	}
 
