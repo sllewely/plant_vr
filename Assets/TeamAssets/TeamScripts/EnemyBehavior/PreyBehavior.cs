@@ -15,7 +15,17 @@ public class PreyBehavior : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        Debug.Log("aiOn is " + aiOn);
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            if (aiOn)
+            {
+                ToggleAiOff();
+            }
+            else
+            {
+                ToggleAiOn();
+            }
+        }
         if (aiOn) {
             Act();
         }
@@ -28,6 +38,7 @@ public class PreyBehavior : MonoBehaviour {
 
     public void ToggleAiOn()
     {
+        Debug.Log("ai on for " + name);
         aiOn = true;
         Rigidbody rb = GetComponent<Rigidbody>();
         rb.isKinematic = true;
@@ -35,6 +46,7 @@ public class PreyBehavior : MonoBehaviour {
 
     public void ToggleAiOff()
     {
+        Debug.Log("ai off for " + name);
         aiOn = false;
         Rigidbody rb = GetComponent<Rigidbody>();
         rb.isKinematic = false;
