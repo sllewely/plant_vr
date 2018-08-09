@@ -45,11 +45,6 @@ public class DartingBeetleBehavior : PreyBehavior {
         }
     }
 
-    void FixedUpdate()
-    {
-
-    }
-
     void Dart()
     {
         transform.position = Vector3.Lerp(fromPos, toPos, timeCount / dartTime);

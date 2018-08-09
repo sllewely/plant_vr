@@ -2,12 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WaspBehavior : MonoBehaviour {
+public class WaspBehavior : PreyBehavior {
 
     // TODO(Sarah): Make pos calculations based on previous frame, not starting pos
 
     float cycleTime = 0;
     Vector3 startPos;
+
 
     public float circleSpeed;
     public float forwardSpeed;
@@ -23,28 +24,18 @@ public class WaspBehavior : MonoBehaviour {
 
     // circleSize += circleGrowSpeed;
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    public override void Setup() {
         startPos = transform.position;
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
 	}
 
-    void FixedUpdate()
+    public override void Act()
     {
-        Move();
-    }
-
-    void Move()
-    {
-        cycleTime += Time.deltaTime;
-        var xPos = startPos.x + Mathf.Sin(cycleTime * circleSpeed) * xWaver;
-        var yPos = startPos.y + Mathf.Cos(cycleTime * circleSpeed) * yWaver;
-        var zPos = transform.position.z + (Time.deltaTime * forwardSpeed);
-        transform.position = new Vector3(xPos, yPos, zPos);
+        transform.position += transform.forward * forwardSpeed;
+        //cycleTime += Time.deltaTime;
+        //var xPos = startPos.x + Mathf.Sin(cycleTime * circleSpeed) * xWaver;
+        //var yPos = startPos.y + Mathf.Cos(cycleTime * circleSpeed) * yWaver;
+        //var zPos = transform.position.z + (Time.deltaTime * forwardSpeed);
+        //transform.position = new Vector3(xPos, yPos, zPos);
     }
 }

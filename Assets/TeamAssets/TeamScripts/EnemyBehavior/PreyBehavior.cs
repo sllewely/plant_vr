@@ -26,11 +26,17 @@ public class PreyBehavior : MonoBehaviour {
                 ToggleAiOn();
             }
         }
-        if (aiOn) {
-            Act();
-        }
+
         
 	}
+
+    private void FixedUpdate()
+    {
+        if (aiOn)
+        {
+            Act();
+        }
+    }
 
     public virtual void Act() {}
 
