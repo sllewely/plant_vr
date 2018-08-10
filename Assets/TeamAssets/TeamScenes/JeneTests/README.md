@@ -1,3 +1,9 @@
+8/9
+Wasp_anim prefab in Prefabs/Enemies
+Tried to adjust collider on dirt, but beetles still falling through when thrown
+Moved Enemy spawner closer to use and lowered it so beetles aren't floating
+Master Scene is crashing after about 10 sec when playing. Starts to strobe and Open VR shuts down.
+
 7/28
 -Created a Master Scene folder, with my environment. Please build in this!
 -Scaled up/rearranged flowerbed so all grabbing can take place in this area
