@@ -21,7 +21,7 @@ public class EatableBehavior : MonoBehaviour {
     {
         if (other.tag == "EatingRegion")
         {
-            Debug.Log("Beetle Eatable inside of EatableRegion");
+            Debug.Log(name + " inside of EatableRegion");
             // Add the score
             gameManager.GetComponent<GameState>().EatSomething(gameObject);
             other.GetComponent<AudioSource>().Play();
