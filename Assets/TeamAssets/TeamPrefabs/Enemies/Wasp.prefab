@@ -961,7 +961,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   circleSpeed: 3
   forwardSpeed: 0.05
-  xWaver: 0
+  xWaver: 0.1
   yWaver: 0.5
 --- !u!114 &114363806972578222
 MonoBehaviour:
