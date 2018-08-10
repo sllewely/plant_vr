@@ -56,7 +56,7 @@ public class WaspBehavior : PreyBehavior {
 
     private Vector3 Movement()
     {
-        Debug.Log(YWaver());
+        //Debug.Log(YWaver());
         return (transform.forward * forwardSpeed) + YWaver() + XWaver();
     }
 }
