@@ -51,7 +51,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a92d0158a28e354a8841f76625bdcd5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startingRot: {x: 0, y: 180, z: 0}
+  startingRot: {x: 0, y: 0, z: 0}
   timeInterval: 1
   timeToDestroy: 10
-  enemy: {fileID: 1188917130813984, guid: c520a0d5b030eba4a82cdb4a5ccaac64, type: 2}
+  enemy: {fileID: 1649742162650496, guid: be41c70d1751b224cbce31ac96ef0360, type: 2}
