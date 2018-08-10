@@ -49,13 +49,14 @@ public class WaspBehavior : PreyBehavior {
 
     private Vector3 YWaver()
     {
-        Debug.Log("Cos: " + Mathf.Cos(cycleTime * circleSpeed));
-        Debug.Log("Normalize: " + Vector3.Normalize((transform.rotation.eulerAngles + yNorm) * Mathf.Cos(cycleTime * circleSpeed)));
-        return Vector3.Normalize((transform.rotation.eulerAngles + yNorm) * Mathf.Cos(cycleTime * circleSpeed)) * yWaver;
+        //Debug.Log("Cos: " + Mathf.Cos(cycleTime * circleSpeed));
+        //Debug.Log("Normalize: " + Vector3.Normalize((transform.rotation.eulerAngles + yNorm) * Mathf.Cos(cycleTime * circleSpeed)));
+        return Vector3.Normalize((transform.rotation.eulerAngles + yNorm)) * Mathf.Cos(cycleTime * circleSpeed) * yWaver;
     }
 
     private Vector3 Movement()
     {
+        Debug.Log(YWaver());
         return (transform.forward * forwardSpeed) + YWaver() + XWaver();
     }
 }
