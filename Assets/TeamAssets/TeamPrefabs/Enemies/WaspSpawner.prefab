@@ -52,6 +52,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startingRot: {x: 0, y: 180, z: 0}
-  timeInterval: 0.5
-  timeToDestroy: 30
-  enemy: {fileID: 1509208976571362, guid: 73b6a98a47a25324a94d5a20051d851c, type: 2}
+  timeInterval: 1
+  timeToDestroy: 10
+  enemy: {fileID: 1188917130813984, guid: c520a0d5b030eba4a82cdb4a5ccaac64, type: 2}
