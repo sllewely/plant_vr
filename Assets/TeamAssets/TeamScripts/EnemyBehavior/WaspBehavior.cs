@@ -8,6 +8,8 @@ public class WaspBehavior : PreyBehavior {
 
     float cycleTime = 0;
     Vector3 startPos;
+    Vector3 xNorm = new Vector3(90, 0, 0);
+    Vector3 yNorm = new Vector3(0, 90, 0);
 
 
     public float circleSpeed;
@@ -31,11 +33,29 @@ public class WaspBehavior : PreyBehavior {
 
     public override void Act()
     {
-        transform.position += transform.forward * forwardSpeed;
-        //cycleTime += Time.deltaTime;
+        cycleTime += Time.deltaTime;
+        transform.position += Movement();
+        //
         //var xPos = startPos.x + Mathf.Sin(cycleTime * circleSpeed) * xWaver;
         //var yPos = startPos.y + Mathf.Cos(cycleTime * circleSpeed) * yWaver;
         //var zPos = transform.position.z + (Time.deltaTime * forwardSpeed);
         //transform.position = new Vector3(xPos, yPos, zPos);
+    }
+
+    private Vector3 XWaver()
+    {
+        return (transform.rotation.eulerAngles + xNorm) * Mathf.Sin(cycleTime * circleSpeed) * xWaver;
+    }
+
+    private Vector3 YWaver()
+    {
+        Debug.Log("Cos: " + Mathf.Cos(cycleTime * circleSpeed));
+        Debug.Log("Normalize: " + Vector3.Normalize((transform.rotation.eulerAngles + yNorm) * Mathf.Cos(cycleTime * circleSpeed)));
+        return Vector3.Normalize((transform.rotation.eulerAngles + yNorm) * Mathf.Cos(cycleTime * circleSpeed)) * yWaver;
+    }
+
+    private Vector3 Movement()
+    {
+        return (transform.forward * forwardSpeed) + YWaver() + XWaver();
     }
 }
