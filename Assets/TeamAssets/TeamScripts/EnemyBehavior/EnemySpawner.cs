@@ -9,13 +9,18 @@ public class EnemySpawner : MonoBehaviour {
     public float timeInterval;
     public float timeToDestroy;
 
+    int waveCount;
+    public float timeBetweenWaves;
+    public int minWave;
+    public int maxWave;
+
     public GameObject enemy;
 
 	// Use this for initialization
 	void Start () {
         
         startingPos = transform.position;
-        //  StartCoroutine(Spawner());
+        waveCount = Random.Range(minWave, maxWave);
         StartCoroutine(Spawner());
     }
 
@@ -28,8 +33,17 @@ public class EnemySpawner : MonoBehaviour {
     {
         for ( ; ; )
         {
+            waveCount--;
             Spawn();
-            yield return new WaitForSeconds(timeInterval);
+            if (waveCount <= 0)
+            {
+                waveCount = Random.Range(minWave, maxWave);
+                yield return new WaitForSeconds(timeBetweenWaves + timeInterval);
+            }
+            else
+            {
+                yield return new WaitForSeconds(timeInterval);
+            }
         }
 
     }

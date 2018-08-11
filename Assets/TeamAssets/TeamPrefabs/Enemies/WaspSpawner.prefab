@@ -53,4 +53,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timeInterval: 1
   timeToDestroy: 10
+  timeBetweenWaves: 5
+  minWave: 4
+  maxWave: 16
   enemy: {fileID: 1649742162650496, guid: be41c70d1751b224cbce31ac96ef0360, type: 2}
