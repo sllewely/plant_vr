@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour {
 
     public int timeLimit;
+    private float timeLeftInGame;
 
     public GameObject gameMenu;
     public GameObject menuHand;
@@ -21,11 +22,13 @@ public class GameManager : MonoBehaviour {
 
     private void Start()
     {
+        timeLeftInGame = timeLimit;
         lives = plantLives.Length;
     }
 
     // Update is called once per frame
     void Update () {
+        timeLeftInGame -= Time.deltaTime;
         // TODO: input
         if (Input.GetKeyDown(KeyCode.Space))
         {
@@ -37,7 +40,7 @@ public class GameManager : MonoBehaviour {
             RestartGame();
         }
 
-        if (Time.time > timeLimit)
+        if (timeLeftInGame < 0)
         {
             Debug.Log("Time is up!");
             SetGameOver();
@@ -74,7 +77,7 @@ public class GameManager : MonoBehaviour {
         GameObject[] spawners = GameObject.FindGameObjectsWithTag("Spawner");
         foreach (var spawner in spawners)
         {
-            Destroy(spawner);
+            spawner.SetActive(false);
         }
         GameObject[] enemies = GameObject.FindGameObjectsWithTag("Prey");
         foreach (var enemy in enemies)
