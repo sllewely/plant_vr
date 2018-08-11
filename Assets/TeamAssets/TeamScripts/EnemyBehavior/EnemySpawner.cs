@@ -6,7 +6,6 @@ public class EnemySpawner : MonoBehaviour {
     // Very simple enemy spawner
 
     Vector3 startingPos;
-    public Vector3 startingRot;
     public float timeInterval;
     public float timeToDestroy;
 
@@ -37,7 +36,7 @@ public class EnemySpawner : MonoBehaviour {
 
     void Spawn()
     {
-        GameObject newEnemy = Instantiate(enemy, startingPos, Quaternion.Euler(startingRot));
+        GameObject newEnemy = Instantiate(enemy, transform.position, transform.rotation);
         Destroy(newEnemy, timeToDestroy);
     }
 }
