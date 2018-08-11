@@ -28,6 +28,7 @@ public class Grab : MonoBehaviour {
                 col.gameObject.transform.SetParent(gameObject.transform);
                 Collider boxcol = this.GetComponent<BoxCollider>();
                 col.gameObject.transform.position = grabSpot.transform.position;
+                col.gameObject.transform.rotation = grabSpot.transform.rotation;
                 isHolding = true;
                 col.gameObject.GetComponent<MonoBehaviour>().enabled = false;
                 //TODO: get below working--- turn off PreyBehavior scripts only
@@ -42,6 +43,7 @@ public class Grab : MonoBehaviour {
                 col.gameObject.transform.SetParent(null);
                 TossObject(col.attachedRigidbody);
                 isHolding = false;
+                //TODO: turn off isHolding if prey "expires"
             }
         }
     }
