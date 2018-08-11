@@ -14,15 +14,25 @@ public class WaspBehavior : PreyBehavior {
     Vector3 lastY = new Vector3(0, 0, 0);
     Vector3 lastX = new Vector3(0, 0, 0);
 
-    public float circleSpeed;
+    public float minCircleSpeed;
+    public float maxCircleSpeed;
+    float circleSpeed;
     public float forwardSpeed;
-    public float xWaver;
-    public float yWaver;
+    public float minXWaver;
+    public float maxXWaver;
+    float xWaver;
+    public float minYWaver;
+    public float maxYWaver;
+    float yWaver;
 
     // Use this for initialization
     public override void Setup() {
         startPos = transform.position;
-	}
+        circleSpeed = Random.Range(minCircleSpeed, maxCircleSpeed);
+        xWaver = Random.Range(minXWaver, maxXWaver);
+        yWaver = Random.Range(minYWaver, maxYWaver);
+
+    }
 
     public override void Act()
     {

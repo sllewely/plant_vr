@@ -891,10 +891,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85d96d439a290824aa52c741deeb24ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  circleSpeed: 5
+  minCircleSpeed: 0
+  maxCircleSpeed: 5
   forwardSpeed: -0.05
-  xWaver: 0.2
-  yWaver: 0.3
+  minXWaver: 0
+  maxXWaver: 0.4
+  minYWaver: 0
+  maxYWaver: 0.4
 --- !u!114 &114762531348047620
 MonoBehaviour:
   m_ObjectHideFlags: 1
