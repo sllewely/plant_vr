@@ -8,6 +8,7 @@ TagManager:
   - Prey
   - EatingRegion
   - Hand
+  - Spawner
   layers:
   - Default
   - TransparentFX

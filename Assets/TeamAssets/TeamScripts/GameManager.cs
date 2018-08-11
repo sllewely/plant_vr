@@ -71,6 +71,16 @@ public class GameManager : MonoBehaviour {
     void SetGameOver()
     {
         gameOver.SetActive(true);
+        GameObject[] spawners = GameObject.FindGameObjectsWithTag("Spawner");
+        foreach (var spawner in spawners)
+        {
+            Destroy(spawner);
+        }
+        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Prey");
+        foreach (var enemy in enemies)
+        {
+            Destroy(enemy);
+        }
     }
 
     void RestartGame()
