@@ -1062,7 +1062,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   trackedObject: {fileID: 0}
   isHolding: 0
-  throwSpeed: 2
+  throwSpeed: 4
   grabSpot: {fileID: 1027977285016252}
 --- !u!114 &114641144796477998
 MonoBehaviour:
@@ -1180,7 +1180,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   trackedObject: {fileID: 0}
   isHolding: 0
-  throwSpeed: 2
+  throwSpeed: 4
   grabSpot: {fileID: 1333396912257004}
 --- !u!124 &124556073730483716
 Behaviour:

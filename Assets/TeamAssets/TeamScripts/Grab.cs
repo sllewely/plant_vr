@@ -6,7 +6,7 @@ public class Grab : MonoBehaviour {
     public SteamVR_TrackedObject trackedObject;
     public SteamVR_Controller.Device device;
     public bool isHolding = false;
-    public float throwSpeed = 2.0f;
+    public float throwSpeed = 4.0f;
     public GameObject grabSpot;
     // Use this for initialization
     void Start () {
@@ -30,6 +30,9 @@ public class Grab : MonoBehaviour {
                 col.gameObject.transform.position = grabSpot.transform.position;
                 isHolding = true;
                 col.gameObject.GetComponent<MonoBehaviour>().enabled = false;
+                //TODO: get below working--- turn off PreyBehavior scripts only
+                //PreyBehavior preyAI = col.gameObject.GetComponent<PreyBehaviour>();
+                //preyAI.enabled = false;
             }
             if (device.GetPressUp(SteamVR_Controller.ButtonMask.Trigger))
             {
