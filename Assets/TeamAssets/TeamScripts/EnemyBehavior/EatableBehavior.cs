@@ -22,15 +22,19 @@ public class EatableBehavior : MonoBehaviour {
         if (other.tag == "EatingRegion")
         {
             Debug.Log(name + " inside of EatableRegion");
-            // Add the score
-            gameManager.GetComponent<GameState>().EatSomething(gameObject);
-            other.GetComponent<AudioSource>().Play();
-            // Deactivate the hand
+
+            // Only eat bug if it's currently being held
             Grab grab = GetComponentInParent<Grab>();
-            if (grab != null)
+            if (grab != null) {
+                // Add the score
+                gameManager.GetComponent<GameState>().EatSomething(gameObject);
+                other.GetComponent<AudioSource>().Play();
+                // Deactivate the hand
                 grab.isHolding = false;
 
-            Destroy(gameObject);
+                Destroy(gameObject);
+            }
+
         }
     }
 
