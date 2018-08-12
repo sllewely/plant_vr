@@ -16,7 +16,7 @@ public class EnemySpawner : MonoBehaviour {
 
     private Bounds spawnBounds;
 
-    public GameObject enemy;
+    public GameObject[] enemies;
 
 	// Use this for initialization
 	void Start () {
@@ -58,7 +58,12 @@ public class EnemySpawner : MonoBehaviour {
         float z = Random.Range(spawnBounds.min.z, spawnBounds.max.z);
         Vector3 spawnPosition = new Vector3(x, y, z);
 
-        GameObject newEnemy = Instantiate(enemy, spawnPosition, transform.rotation);
+        GameObject newEnemy = Instantiate(NextEnemy(), spawnPosition, transform.rotation);
         Destroy(newEnemy, timeToDestroy);
+    }
+
+    GameObject NextEnemy()
+    {
+        return enemies[Random.Range(0, enemies.Length - 1)];
     }
 }

@@ -69,4 +69,5 @@ MonoBehaviour:
   timeBetweenWaves: 0
   minWave: 0
   maxWave: 0
-  enemy: {fileID: 1406429920336730, guid: 715a689e07978a447bb6071af9ddc589, type: 2}
+  enemies:
+  - {fileID: 1406429920336730, guid: 715a689e07978a447bb6071af9ddc589, type: 2}
