@@ -5,7 +5,7 @@ using UnityEngine;
 public class EnemySpawner : MonoBehaviour {
     // Very simple enemy spawner
 
-    Vector3 startingPos;
+    //Vector3 startingPos;
     public float timeInterval;
     public float timeToDestroy;
 
@@ -14,12 +14,15 @@ public class EnemySpawner : MonoBehaviour {
     public int minWave;
     public int maxWave;
 
+    private Bounds spawnBounds;
+
     public GameObject enemy;
 
 	// Use this for initialization
 	void Start () {
-        
-        startingPos = transform.position;
+
+        //startingPos = transform.position;
+        spawnBounds = GetComponent<Collider>().bounds;
         waveCount = Random.Range(minWave, maxWave);
         StartCoroutine(Spawner());
     }
@@ -50,7 +53,12 @@ public class EnemySpawner : MonoBehaviour {
 
     void Spawn()
     {
-        GameObject newEnemy = Instantiate(enemy, transform.position, transform.rotation);
+        float x = Random.Range(spawnBounds.min.x, spawnBounds.max.x);
+        float y = Random.Range(spawnBounds.min.y, spawnBounds.max.y);
+        float z = Random.Range(spawnBounds.min.z, spawnBounds.max.z);
+        Vector3 spawnPosition = new Vector3(x, y, z);
+
+        GameObject newEnemy = Instantiate(enemy, spawnPosition, transform.rotation);
         Destroy(newEnemy, timeToDestroy);
     }
 }
