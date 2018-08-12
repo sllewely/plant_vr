@@ -16,6 +16,10 @@ public class Grab : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         device = SteamVR_Controller.Input((int)trackedObject.index);
+        if (isHolding)
+        {
+            device.TriggerHapticPulse(700);
+        }
     }
 
     void OnTriggerStay(Collider col)
