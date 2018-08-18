@@ -20,7 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4195829610774446}
   - component: {fileID: 114116051825599738}
-  - component: {fileID: 65033676048276186}
+  - component: {fileID: 65481562205449184}
   m_Layer: 0
   m_Name: EnemySpawner
   m_TagString: Spawner
@@ -35,13 +35,13 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1740225548012446}
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: -13.2921915, y: 0.198, z: -37.85}
+  m_LocalPosition: {x: -14.18, y: 0.134, z: -37.85}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
---- !u!65 &65033676048276186
+--- !u!65 &65481562205449184
 BoxCollider:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -51,8 +51,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 1, y: 0.12241173, z: 1}
+  m_Center: {x: -0, y: 0.088485956, z: -0}
 --- !u!114 &114116051825599738
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -67,7 +67,7 @@ MonoBehaviour:
   timeInterval: 3
   timeToDestroy: 15
   timeBetweenWaves: 0
-  minWave: 0
-  maxWave: 0
+  minWave: 2
+  maxWave: 6
   enemies:
   - {fileID: 1406429920336730, guid: 715a689e07978a447bb6071af9ddc589, type: 2}
