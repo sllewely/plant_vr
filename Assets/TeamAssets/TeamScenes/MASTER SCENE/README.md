@@ -1,3 +1,8 @@
+8/18
+Uploaded the adjusted beetle height (the one used at PlayNYC)
+Scaled down flower bed
+Moved around objects which were mostly out of sight to be more visible
+
 8/9
 Wasp_anim prefab in Prefabs/Enemies
 Tried to adjust collider on dirt, but beetles still falling through when thrown
