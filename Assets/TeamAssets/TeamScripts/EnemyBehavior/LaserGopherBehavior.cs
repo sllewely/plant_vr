@@ -21,7 +21,7 @@ public class LaserGopherBehavior : MonoBehaviour {
 //        startPosition = transform.position;
 	    
 	    // I guess we only need to calculate this once since players don't move
-	    playerLocation = GameObject.Find("Player").transform.position;
+	    playerLocation = GameObject.Find("[CameraRig]").transform.position;
 	}
 
 

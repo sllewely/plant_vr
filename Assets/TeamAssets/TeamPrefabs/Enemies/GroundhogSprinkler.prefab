@@ -261,7 +261,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1831296656569168}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -1.4, z: 0}
   m_LocalScale: {x: 0.05, y: 0.05, z: 0.05}
   m_Children:
   - {fileID: 4995252209862130}
@@ -638,7 +638,6 @@ MonoBehaviour:
   gopherState: 0
   undergroundTime: 5
   verticalSpeed: 0.5
-  verticalHeight: 1
-  startPosition: {x: 0, y: 0, z: 0}
-  randomCircleRadius: 2
-  rotateSpeed: 0.5
+  verticalHeight: 0.3
+  rotateSpeed: 10
+  freezeTime: 0
