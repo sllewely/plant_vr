@@ -18,8 +18,7 @@ public class FreezeTime : MonoBehaviour {
 	private void Start ()
 	{
 		freezeTime = false;
-		leftController = PlayerHelper.GetLeftHand();
-		rightController = PlayerHelper.GetRightHand();
+
 	}
 
 	private void FixedUpdate()
@@ -33,6 +32,8 @@ public class FreezeTime : MonoBehaviour {
 	public void BeginFreezeTime()
 	{
 		Debug.Log("begin freeze time");
+		leftController = PlayerHelper.GetLeftHand();
+		rightController = PlayerHelper.GetRightHand();
 		freezeTime = true;
 	}
 
