@@ -2,63 +2,42 @@
 
 public class LaserGopherBehavior : MonoBehaviour {
     public enum GopherState { Underground, Rise, Rotate, Detect, Sink }
-    public GopherState gopherState = GopherState.Underground;
+    private GopherState gopherState = GopherState.Underground;
     public float undergroundTime;
     public float verticalSpeed;
     public float verticalHeight;
     public float rotateSpeed;
     private Quaternion destRot;
     public float freezeTime;
+    public float verticalDepth;
 
     float countDown;
     private Vector3 playerLocation;
 
-	private void Start () {
-        // Start underground
-        gopherState = GopherState.Underground;
-        countDown = undergroundTime;
-	    
-	    // I guess we only need to calculate this once since players don't move
-	    playerLocation = PlayerHelper.GetPlayerLocation();
+	private void Start ()
+	{
+	    SetUnderground();
 	}
 
-
-    // Pick location
-    // Detect player location
-    // Begin rotating towards player
-    // Stay facing, detect player motion
-    // Sink
-    // hide and pick new location
-	
-	// Update is called once per frame
 	private void Update () {
         countDown -= Time.deltaTime;
         switch (gopherState)
         {
             case GopherState.Underground:
-                if (countDown <= 0)
-                {
-                    SetRise();
-                }
+                Underground();
                 break;
             case GopherState.Rise:
-                if (transform.position.y >= verticalHeight)
-                {
-                    SetRotate();
-                }
-                else
-                {
-                    Rise();
-                }
+                Rise();
                 break;
             case GopherState.Rotate:
                 Rotate();
                 break;
-                
-                
-//            case MoleState.Lower:
-//                transform.position = transform.position + (new Vector3(0, -verticalSpeed, 0) * Time.deltaTime);
-//                break;
+            case GopherState.Detect:
+                Detect();
+                break;
+            case GopherState.Sink:
+                Sink();
+                break;
         }
     }
 
@@ -71,11 +50,20 @@ public class LaserGopherBehavior : MonoBehaviour {
     private void Rise()
     {
         transform.Translate(Vector3.up * verticalSpeed * Time.deltaTime, Space.World);
+        
+        // Determine if Rise state is done
+        if (transform.position.y >= verticalHeight)
+        {
+            SetRotate();
+        }
     }
 
     private void SetRotate()
     {
         gopherState = GopherState.Rotate;
+        
+        // Recalculate player location at the state of each rotation cycle
+        playerLocation = PlayerHelper.GetPlayerLocation();
         var targetDir = playerLocation - transform.position;
         destRot = Quaternion.LookRotation(targetDir, Vector3.up);
         Debug.Log("rotating");
@@ -102,29 +90,38 @@ public class LaserGopherBehavior : MonoBehaviour {
         Debug.Log("detecting");
     }
 
-//    void FixedUpdate()
-//    {
-//
-//    }
-//
-//    void NewLocation()
-//    {
-//        Vector2 randomCirclePos = Random.insideUnitCircle * randomCircleRadius;
-//        transform.position = startPosition + new Vector3(randomCirclePos.x, 0, randomCirclePos.y);
-//        // Debug.Log("new position is " + transform.position);
-//    }
+    private void Detect()
+    {
+        if (countDown < 0)
+        {
+            gopherState = GopherState.Sink;
+        }
+    }
 
-//    IEnumerator MoleMove()
-//    {
-//        for (int i = 0; true; i = (i + 1) % 3)
-//        {
-//            moleState = (GopherState)i;
-//            // Debug.Log("mole state is " + moleState);
-//            if (moleState == GopherState.Rest) {
-//                NewLocation();
-//            }
-//            yield return new WaitForSeconds(timeInterval);
-//        }
-//
-//    }
+    private void Sink()
+    {
+        transform.Translate(Vector3.down * verticalSpeed * Time.deltaTime, Space.World);
+        
+        // Determine if Rise state is done
+        if (transform.position.y <= verticalDepth)
+        {
+            SetUnderground();
+        }
+    }
+
+    private void SetUnderground()
+    {
+        gopherState = GopherState.Underground;
+        countDown = undergroundTime;
+    }
+
+    private void Underground()
+    {
+        if (countDown <= 0)
+        {
+            SetRise();
+        }
+    }
+    
+
 }
