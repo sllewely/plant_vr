@@ -18,7 +18,6 @@ public class FreezeTime : MonoBehaviour {
 	private void Start ()
 	{
 		freezeTime = false;
-
 	}
 
 	private void FixedUpdate()
@@ -32,8 +31,7 @@ public class FreezeTime : MonoBehaviour {
 	public void BeginFreezeTime()
 	{
 		Debug.Log("begin freeze time");
-		leftController = PlayerHelper.GetLeftHand();
-		rightController = PlayerHelper.GetRightHand();
+		FetchHands();
 		freezeTime = true;
 	}
 
@@ -64,5 +62,14 @@ public class FreezeTime : MonoBehaviour {
 			return true;
 		}
 		return Vector3.Distance(lastRightPos, newRightPos) > movementBuffer;
+	}
+
+	private void FetchHands()
+	{
+		if (leftController == null || rightController == null)
+		{
+			leftController = PlayerHelper.GetLeftHand();
+			rightController = PlayerHelper.GetRightHand();
+		}
 	}
 }
