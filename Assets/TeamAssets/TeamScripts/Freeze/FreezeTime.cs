@@ -7,6 +7,7 @@ public class FreezeTime : MonoBehaviour {
 	// Handle freezing
 	private bool freezeTime;
 	public float movementBuffer;
+	public float detectInterval;
 	public AudioSource youMovedSound;
 
 	// Hand positions
@@ -18,16 +19,9 @@ public class FreezeTime : MonoBehaviour {
 	private void Start ()
 	{
 		freezeTime = false;
+		StartCoroutine(DetectMovement());
 	}
 
-	private void FixedUpdate()
-	{
-		if (freezeTime)
-		{
-			DetectMovement();
-		}
-	}
-	
 	public void BeginFreezeTime()
 	{
 		Debug.Log("begin freeze time");
@@ -41,35 +35,40 @@ public class FreezeTime : MonoBehaviour {
 		freezeTime = false;
 	}
 
-	private void DetectMovement()
+	private IEnumerator DetectMovement()
 	{
-		var newLeftPos = leftController.transform.position;
-		var newRightPos = rightController.transform.position;
-		if (MovedTooMuch(newLeftPos, newRightPos))
+		while (true)
 		{
-			Debug.Log("You moved!");
-			youMovedSound.Play();
+			if (freezeTime)
+			{
+				var newLeftPos = leftController.transform.position;
+				var newRightPos = rightController.transform.position;
+				if (MovedTooMuch(newLeftPos, newRightPos))
+				{
+					Debug.Log("You moved!");
+					youMovedSound.Play();
+				}
+				lastLeftPos = newLeftPos;
+				lastRightPos = newRightPos;
+			}
+			yield return new WaitForSeconds(detectInterval);
 		}
-		lastLeftPos = newLeftPos;
-		lastRightPos = newRightPos;
 	}
 
 	private bool MovedTooMuch(Vector3 newLeftPos, Vector3 newRightPos)
 	{
 		Debug.Log("Left hand movement: " + Vector3.Distance(lastLeftPos, newLeftPos));
-		if (Vector3.Distance(lastLeftPos, newLeftPos) > movementBuffer)
+		if (Vector3.Distance(lastLeftPos, newLeftPos)/detectInterval > movementBuffer)
 		{
 			return true;
 		}
-		return Vector3.Distance(lastRightPos, newRightPos) > movementBuffer;
+		return Vector3.Distance(lastRightPos, newRightPos)/detectInterval > movementBuffer;
 	}
 
 	private void FetchHands()
 	{
-		if (leftController == null || rightController == null)
-		{
-			leftController = PlayerHelper.GetLeftHand();
-			rightController = PlayerHelper.GetRightHand();
-		}
+		if (leftController != null && rightController != null) return;
+		leftController = PlayerHelper.GetLeftHand();
+		rightController = PlayerHelper.GetRightHand();
 	}
 }
