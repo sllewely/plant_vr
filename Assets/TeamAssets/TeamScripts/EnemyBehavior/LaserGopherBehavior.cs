@@ -4,6 +4,7 @@ public class LaserGopherBehavior : MonoBehaviour {
     private enum GopherState { Underground, Rise, Rotate, Detect, Sink }
     private GopherState gopherState = GopherState.Underground;
     float countDown;
+    private GameObject player;
     
     // Underground State variables
     public float undergroundTime;
@@ -25,6 +26,7 @@ public class LaserGopherBehavior : MonoBehaviour {
 	private void Start ()
 	{
 	    faceAwayRot = transform.rotation;
+	    player = PlayerHelper.GetPlayer();
 	    freezeManager = FreezeHelper.GetFreezeManager();
 	    SetUnderground();
 	}
@@ -90,7 +92,7 @@ public class LaserGopherBehavior : MonoBehaviour {
         gopherState = GopherState.Rotate;
         
         // Recalculate player location at the state of each rotation cycle
-        var playerLocation = PlayerHelper.GetPlayerLocation();
+        var playerLocation = PlayerHelper.GetPlayerLocation(player);
         var targetDir = playerLocation - transform.position;
         destRot = Quaternion.LookRotation(targetDir, Vector3.up);
     }
