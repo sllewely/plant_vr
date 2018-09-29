@@ -635,9 +635,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74b8eb12e48ee334fb779251ba5140be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gopherState: 0
-  undergroundTime: 5
+  undergroundTime: 2
+  faceAwayRot: {x: 0, y: 0, z: 0, w: 0}
   verticalSpeed: 0.5
   verticalHeight: 0.3
-  rotateSpeed: 10
-  freezeTime: 0
+  verticalDepth: -1.5
+  rotateSpeed: 20
+  freezeTime: 10

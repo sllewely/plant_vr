@@ -1,134 +1,140 @@
 ﻿using UnityEngine;
 
 public class LaserGopherBehavior : MonoBehaviour {
-    public enum GopherState { Underground, Rise, Rotate, Detect, Sink }
-    public GopherState gopherState = GopherState.Underground;
+    private enum GopherState { Underground, Rise, Rotate, Detect, Sink }
+    private GopherState gopherState = GopherState.Underground;
+    float countDown;
+    private GameObject player;
+    
+    // Underground State variables
     public float undergroundTime;
+    public Quaternion faceAwayRot;
+    
+    // Rise and Sink state variables
     public float verticalSpeed;
     public float verticalHeight;
-//    public float randomCircleRadius = 2f;
+    public float verticalDepth;
+
+    // Rotate State Variables
     public float rotateSpeed;
+    private Quaternion destRot;
+    
+    // Detect state variables
     public float freezeTime;
+    private FreezeTime freezeScript;
 
-    float countDown;
-    private Vector3 playerLocation;
-
-	// Use this for initialization
-	private void Start () {
-        // Start underground
-        gopherState = GopherState.Underground;
-        countDown = undergroundTime;
-//        startPosition = transform.position;
-	    
-	    // I guess we only need to calculate this once since players don't move
-	    playerLocation = GameObject.Find("[CameraRig]").transform.position;
+	private void Start ()
+	{
+	    faceAwayRot = transform.rotation;
+	    player = PlayerHelper.GetPlayer();
+	    freezeScript = FreezeHelper.GetFreezeScript();
+	    SetUnderground();
 	}
 
-
-    // Pick location
-    // Detect player location
-    // Begin rotating towards player
-    // Stay facing, detect player motion
-    // Sink
-    // hide and pick new location
-	
-	// Update is called once per frame
 	private void Update () {
         countDown -= Time.deltaTime;
         switch (gopherState)
         {
             case GopherState.Underground:
-                if (countDown <= 0)
-                {
-                    SetRise();
-                }
+                Underground();
                 break;
             case GopherState.Rise:
-                if (transform.position.y >= verticalHeight)
-                {
-                    SetRotate();
-                }
-                else
-                {
-                    // maybe rise to position and lower to position
-                    transform.Translate(Vector3.up * verticalSpeed * Time.deltaTime, Space.World);
-                }
+                Rise();
                 break;
             case GopherState.Rotate:
-                
-                var targetDir = playerLocation - transform.position;
-                var destRot = Quaternion.LookRotation(targetDir, Vector3.up);
-                Debug.Log(destRot);
-                var rotation = Quaternion.RotateTowards(transform.rotation, destRot, rotateSpeed * Time.deltaTime);
-                var diff = Quaternion.Angle(destRot, transform.rotation);
-                Debug.Log("difference: " + diff);
-                transform.rotation = rotation;
-
-//                // Will contain the information of which object the raycast hit
-//                RaycastHit hit;
-// 
-//                // if raycast hits, it checks if it hit an object with the tag Player
-//                if (Physics.Raycast(transform.position, transform.forward, out hit, 100f) &&
-//                    hit.collider.gameObject.CompareTag("Player"))
-//                {
-//                    SetDetect();
-//                }
-
-                if (diff == 0)
-                {
-                    SetDetect();
-                }
+                Rotate();
                 break;
-                
-                
-//            case MoleState.Lower:
-//                transform.position = transform.position + (new Vector3(0, -verticalSpeed, 0) * Time.deltaTime);
-//                break;
+            case GopherState.Detect:
+                Detect();
+                break;
+            case GopherState.Sink:
+                Sink();
+                break;
+            default:
+                Debug.LogWarning("Gopher in unhandled state: " + gopherState);
+                break;
         }
     }
 
+    private void SetUnderground()
+    {
+        gopherState = GopherState.Underground;
+        transform.rotation = faceAwayRot;
+        countDown = undergroundTime;
+    }
+
+    private void Underground()
+    {
+        if (countDown <= 0)
+        {
+            SetRise();
+        }
+    }
+    
     private void SetRise()
     {
         gopherState = GopherState.Rise;
-        Debug.Log("Rising");
+    }
+
+    private void Rise()
+    {
+        transform.Translate(Vector3.up * verticalSpeed * Time.deltaTime, Space.World);
+        
+        // Determine if Rise state is done
+        if (transform.position.y >= verticalHeight)
+        {
+            SetRotate();
+        }
     }
 
     private void SetRotate()
     {
         gopherState = GopherState.Rotate;
-        Debug.Log("rotating");
+        
+        // Recalculate player location at the state of each rotation cycle
+        var playerLocation = player.transform.position;
+        var targetDir = playerLocation - transform.position;
+        destRot = Quaternion.LookRotation(targetDir, Vector3.up);
+    }
+
+    private void Rotate()
+    {
+        var rotation = Quaternion.RotateTowards(transform.rotation, destRot, rotateSpeed * Time.deltaTime);
+        var diff = Quaternion.Angle(destRot, transform.rotation);
+        transform.rotation = rotation;
+        
+        // Determine if rotation state is done
+        if (diff == 0)
+        {
+            SetDetect();
+        }
     }
 
     private void SetDetect()
     {
         gopherState = GopherState.Detect;
+        freezeScript.BeginFreezeTime();
         countDown = freezeTime;
-        Debug.Log("detecting");
     }
 
-//    void FixedUpdate()
-//    {
-//
-//    }
-//
-//    void NewLocation()
-//    {
-//        Vector2 randomCirclePos = Random.insideUnitCircle * randomCircleRadius;
-//        transform.position = startPosition + new Vector3(randomCirclePos.x, 0, randomCirclePos.y);
-//        // Debug.Log("new position is " + transform.position);
-//    }
+    private void Detect()
+    {
+        // Determine if Detect state is done
+        if (countDown <= 0)
+        {
+            freezeScript.EndFreezeTime();
+            gopherState = GopherState.Sink;
+        }
+    }
 
-//    IEnumerator MoleMove()
-//    {
-//        for (int i = 0; true; i = (i + 1) % 3)
-//        {
-//            moleState = (GopherState)i;
-//            // Debug.Log("mole state is " + moleState);
-//            if (moleState == GopherState.Rest) {
-//                NewLocation();
-//            }
-//            yield return new WaitForSeconds(timeInterval);
-//        }
-//
-//    }
+    private void Sink()
+    {
+        transform.Translate(Vector3.down * verticalSpeed * Time.deltaTime, Space.World);
+        
+        // Determine if Sink state is done
+        if (transform.position.y <= verticalDepth)
+        {
+            SetUnderground();
+        }
+    }
 }
