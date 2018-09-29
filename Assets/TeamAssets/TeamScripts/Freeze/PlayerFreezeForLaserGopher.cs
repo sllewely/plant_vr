@@ -5,7 +5,6 @@ using UnityEngine;
 public class PlayerFreezeForLaserGopher : MonoBehaviour {
 	
 	public float movementBuffer;
-//	private GameObject player;
 	private GameObject leftController;
 	private GameObject rightController;
 	public AudioSource youMovedSound;
@@ -21,11 +20,8 @@ public class PlayerFreezeForLaserGopher : MonoBehaviour {
 	private void Start ()
 	{
 		freezeTime = false;
-//		player = PlayerHelper.GetPlayer();
 		leftController = PlayerHelper.GetLeftHand();
 		rightController = PlayerHelper.GetRightHand();
-//		leftController = GameObject.Find("LeftHand");
-//		rightController = GameObject.Find("RightHand");
 	}
 
 	private void FixedUpdate()
