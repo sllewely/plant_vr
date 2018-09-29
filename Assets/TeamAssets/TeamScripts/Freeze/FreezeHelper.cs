@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class FreezeHelper {
 
-    public static PlayerFreezeForLaserGopher GetFreezeScript()
+    public static FreezeTime GetFreezeScript()
     {
-        return GameObject.Find("FreezeManager").GetComponent<PlayerFreezeForLaserGopher>();
+        return GameObject.Find("FreezeManager").GetComponent<FreezeTime>();
     }
 }

@@ -21,7 +21,7 @@ public class LaserGopherBehavior : MonoBehaviour {
     
     // Detect state variables
     public float freezeTime;
-    private PlayerFreezeForLaserGopher freezeScript;
+    private FreezeTime freezeScript;
 
 	private void Start ()
 	{

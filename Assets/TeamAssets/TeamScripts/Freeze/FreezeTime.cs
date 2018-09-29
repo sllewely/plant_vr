@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerFreezeForLaserGopher : MonoBehaviour {
+public class FreezeTime : MonoBehaviour {
 	
 	// Handle freezing
 	private bool freezeTime;
