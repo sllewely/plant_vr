@@ -4,17 +4,17 @@ using UnityEngine;
 
 public class PlayerFreezeForLaserGopher : MonoBehaviour {
 	
+	// Handle freezing
+	private bool freezeTime;
 	public float movementBuffer;
+	public AudioSource youMovedSound;
+
+	// Hand positions
 	private GameObject leftController;
 	private GameObject rightController;
-	public AudioSource youMovedSound;
 	private Vector3 lastLeftPos;
 	private Vector3 lastRightPos;
 
-
-	private bool freezeTime;
-
-	// Use this for initialization
 	private void Start ()
 	{
 		freezeTime = false;
