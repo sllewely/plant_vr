@@ -16,11 +16,6 @@ public class PlayerHelper
         return FindWithWarning(playerName);
     }
 
-    public static Vector3 GetPlayerLocation(GameObject player)
-    {
-        return player.transform.position;
-    }
-
     public static GameObject GetLeftHand()
     {
         return FindWithWarning(playerName + "/LeftHand");

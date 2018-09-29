@@ -92,7 +92,7 @@ public class LaserGopherBehavior : MonoBehaviour {
         gopherState = GopherState.Rotate;
         
         // Recalculate player location at the state of each rotation cycle
-        var playerLocation = PlayerHelper.GetPlayerLocation(player);
+        var playerLocation = player.transform.position;
         var targetDir = playerLocation - transform.position;
         destRot = Quaternion.LookRotation(targetDir, Vector3.up);
     }
