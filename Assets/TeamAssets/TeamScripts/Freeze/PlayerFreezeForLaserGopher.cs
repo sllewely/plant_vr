@@ -28,7 +28,7 @@ public class PlayerFreezeForLaserGopher : MonoBehaviour {
 //		rightController = GameObject.Find("RightHand");
 	}
 
-	private void FixedUpate()
+	private void FixedUpdate()
 	{
 		if (freezeTime)
 		{
@@ -63,6 +63,7 @@ public class PlayerFreezeForLaserGopher : MonoBehaviour {
 
 	private bool MovedTooMuch(Vector3 newLeftPos, Vector3 newRightPos)
 	{
+		Debug.Log("Left hand movement: " + Vector3.Distance(lastLeftPos, newLeftPos));
 		if (Vector3.Distance(lastLeftPos, newLeftPos) > movementBuffer)
 		{
 			return true;
