@@ -6,22 +6,20 @@ public class LaserGopherBehavior : MonoBehaviour {
     public float undergroundTime;
     public float verticalSpeed;
     public float verticalHeight;
-//    public float randomCircleRadius = 2f;
     public float rotateSpeed;
+    private Quaternion destRot;
     public float freezeTime;
 
     float countDown;
     private Vector3 playerLocation;
 
-	// Use this for initialization
 	private void Start () {
         // Start underground
         gopherState = GopherState.Underground;
         countDown = undergroundTime;
-//        startPosition = transform.position;
 	    
 	    // I guess we only need to calculate this once since players don't move
-	    playerLocation = GameObject.Find("[CameraRig]").transform.position;
+	    playerLocation = PlayerHelper.GetPlayerLocation();
 	}
 
 
@@ -50,34 +48,11 @@ public class LaserGopherBehavior : MonoBehaviour {
                 }
                 else
                 {
-                    // maybe rise to position and lower to position
-                    transform.Translate(Vector3.up * verticalSpeed * Time.deltaTime, Space.World);
+                    Rise();
                 }
                 break;
             case GopherState.Rotate:
-                
-                var targetDir = playerLocation - transform.position;
-                var destRot = Quaternion.LookRotation(targetDir, Vector3.up);
-                Debug.Log(destRot);
-                var rotation = Quaternion.RotateTowards(transform.rotation, destRot, rotateSpeed * Time.deltaTime);
-                var diff = Quaternion.Angle(destRot, transform.rotation);
-                Debug.Log("difference: " + diff);
-                transform.rotation = rotation;
-
-//                // Will contain the information of which object the raycast hit
-//                RaycastHit hit;
-// 
-//                // if raycast hits, it checks if it hit an object with the tag Player
-//                if (Physics.Raycast(transform.position, transform.forward, out hit, 100f) &&
-//                    hit.collider.gameObject.CompareTag("Player"))
-//                {
-//                    SetDetect();
-//                }
-
-                if (diff == 0)
-                {
-                    SetDetect();
-                }
+                Rotate();
                 break;
                 
                 
@@ -93,10 +68,31 @@ public class LaserGopherBehavior : MonoBehaviour {
         Debug.Log("Rising");
     }
 
+    private void Rise()
+    {
+        transform.Translate(Vector3.up * verticalSpeed * Time.deltaTime, Space.World);
+    }
+
     private void SetRotate()
     {
         gopherState = GopherState.Rotate;
+        var targetDir = playerLocation - transform.position;
+        destRot = Quaternion.LookRotation(targetDir, Vector3.up);
         Debug.Log("rotating");
+    }
+
+    private void Rotate()
+    {
+        var rotation = Quaternion.RotateTowards(transform.rotation, destRot, rotateSpeed * Time.deltaTime);
+        var diff = Quaternion.Angle(destRot, transform.rotation);
+        Debug.Log("difference: " + diff);
+        transform.rotation = rotation;
+        
+        // Determine if rotation state is done
+        if (diff == 0)
+        {
+            SetDetect();
+        }
     }
 
     private void SetDetect()
