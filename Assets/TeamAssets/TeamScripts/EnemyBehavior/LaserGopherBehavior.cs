@@ -1,21 +1,30 @@
 ﻿using UnityEngine;
 
 public class LaserGopherBehavior : MonoBehaviour {
-    public enum GopherState { Underground, Rise, Rotate, Detect, Sink }
+    private enum GopherState { Underground, Rise, Rotate, Detect, Sink }
     private GopherState gopherState = GopherState.Underground;
+    
+    // Underground State variables
     public float undergroundTime;
+    public Quaternion faceAwayRot;
+    
+    // Rise and Sink state variables
     public float verticalSpeed;
     public float verticalHeight;
-    public float rotateSpeed;
-    private Quaternion destRot;
-    public float freezeTime;
     public float verticalDepth;
 
+    // Rotate State Variables
+    public float rotateSpeed;
+    private Quaternion destRot;
+    
+    // Detect state variables
+    public float freezeTime;
+
     float countDown;
-    private Vector3 playerLocation;
 
 	private void Start ()
 	{
+	    faceAwayRot = transform.rotation;
 	    SetUnderground();
 	}
 
@@ -38,13 +47,30 @@ public class LaserGopherBehavior : MonoBehaviour {
             case GopherState.Sink:
                 Sink();
                 break;
+            default:
+                Debug.LogWarning("Gopher in unhandled state: " + gopherState);
+                break;
         }
     }
 
+    private void SetUnderground()
+    {
+        gopherState = GopherState.Underground;
+        transform.rotation = faceAwayRot;
+        countDown = undergroundTime;
+    }
+
+    private void Underground()
+    {
+        if (countDown <= 0)
+        {
+            SetRise();
+        }
+    }
+    
     private void SetRise()
     {
         gopherState = GopherState.Rise;
-        Debug.Log("Rising");
     }
 
     private void Rise()
@@ -63,17 +89,15 @@ public class LaserGopherBehavior : MonoBehaviour {
         gopherState = GopherState.Rotate;
         
         // Recalculate player location at the state of each rotation cycle
-        playerLocation = PlayerHelper.GetPlayerLocation();
+        var playerLocation = PlayerHelper.GetPlayerLocation();
         var targetDir = playerLocation - transform.position;
         destRot = Quaternion.LookRotation(targetDir, Vector3.up);
-        Debug.Log("rotating");
     }
 
     private void Rotate()
     {
         var rotation = Quaternion.RotateTowards(transform.rotation, destRot, rotateSpeed * Time.deltaTime);
         var diff = Quaternion.Angle(destRot, transform.rotation);
-        Debug.Log("difference: " + diff);
         transform.rotation = rotation;
         
         // Determine if rotation state is done
@@ -87,7 +111,6 @@ public class LaserGopherBehavior : MonoBehaviour {
     {
         gopherState = GopherState.Detect;
         countDown = freezeTime;
-        Debug.Log("detecting");
     }
 
     private void Detect()
@@ -102,26 +125,10 @@ public class LaserGopherBehavior : MonoBehaviour {
     {
         transform.Translate(Vector3.down * verticalSpeed * Time.deltaTime, Space.World);
         
-        // Determine if Rise state is done
+        // Determine if Sink state is done
         if (transform.position.y <= verticalDepth)
         {
             SetUnderground();
         }
     }
-
-    private void SetUnderground()
-    {
-        gopherState = GopherState.Underground;
-        countDown = undergroundTime;
-    }
-
-    private void Underground()
-    {
-        if (countDown <= 0)
-        {
-            SetRise();
-        }
-    }
-    
-
 }
