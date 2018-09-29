@@ -14,8 +14,6 @@ public class PlayerFreezeForLaserGopher : MonoBehaviour {
 
 	private bool freezeTime;
 
-	private GameObject[] hands;
-
 	// Use this for initialization
 	private void Start ()
 	{

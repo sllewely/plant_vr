@@ -21,13 +21,13 @@ public class LaserGopherBehavior : MonoBehaviour {
     
     // Detect state variables
     public float freezeTime;
-    private GameObject freezeManager;
+    private PlayerFreezeForLaserGopher freezeScript;
 
 	private void Start ()
 	{
 	    faceAwayRot = transform.rotation;
 	    player = PlayerHelper.GetPlayer();
-	    freezeManager = FreezeHelper.GetFreezeManager();
+	    freezeScript = FreezeHelper.GetFreezeScript();
 	    SetUnderground();
 	}
 
@@ -113,7 +113,7 @@ public class LaserGopherBehavior : MonoBehaviour {
     private void SetDetect()
     {
         gopherState = GopherState.Detect;
-        freezeManager.GetComponent<PlayerFreezeForLaserGopher>().BeginFreezeTime();
+        freezeScript.BeginFreezeTime();
         countDown = freezeTime;
     }
 
@@ -122,7 +122,7 @@ public class LaserGopherBehavior : MonoBehaviour {
         // Determine if Detect state is done
         if (countDown <= 0)
         {
-            freezeManager.GetComponent<PlayerFreezeForLaserGopher>().EndFreezeTime();
+            freezeScript.EndFreezeTime();
             gopherState = GopherState.Sink;
         }
     }
