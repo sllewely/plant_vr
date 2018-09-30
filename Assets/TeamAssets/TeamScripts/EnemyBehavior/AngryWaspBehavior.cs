@@ -12,6 +12,7 @@ public class AngryWaspBehavior : PreyBehavior {
 
     private AngryWaspState angryWaspState;
     private GameObject target;
+    private Quaternion destRot;
 
     public float attackRange;
     public float attackSpeed;    
@@ -58,12 +59,18 @@ public class AngryWaspBehavior : PreyBehavior {
                 {
                     angryWaspState = AngryWaspState.Pause;
                     cycleTime = 0;
+                    var targetDir = target.transform.position - transform.position;
+                    destRot = Quaternion.LookRotation(targetDir, Vector3.up);
                     Debug.Log("Wasp pause");
                 }
                 break;
             case AngryWaspState.Pause:
                 // Parameterize pause time
-                if (cycleTime > 1)
+                var rotation = Quaternion.RotateTowards(transform.rotation, destRot, 60 * Time.deltaTime);
+                
+                var diff = Quaternion.Angle(destRot, transform.rotation);
+                transform.rotation = rotation;
+                if (cycleTime > 1 && diff <= 0)
                 {
                     angryWaspState = AngryWaspState.Attack;
                     Debug.Log("wasp attack");

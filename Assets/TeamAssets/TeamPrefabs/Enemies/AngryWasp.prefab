@@ -305,7 +305,7 @@ Transform:
   m_GameObject: {fileID: 1649742162650496}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0, y: 0, z: 0}
-  m_LocalScale: {x: 20, y: 20, z: 20}
+  m_LocalScale: {x: 5, y: 5, z: 5}
   m_Children:
   - {fileID: 4078128433757722}
   - {fileID: 4403350249498792}
@@ -1000,7 +1000,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attackRange: 3
-  attackSpeed: 1
+  attackSpeed: 5
   minCircleSpeed: 0
   maxCircleSpeed: 5
   forwardSpeed: -0.05
