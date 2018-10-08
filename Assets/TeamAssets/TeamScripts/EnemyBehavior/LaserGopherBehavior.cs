@@ -22,6 +22,8 @@ public class LaserGopherBehavior : MonoBehaviour {
     // Detect state variables
     public float freezeTime;
     private FreezeTime freezeScript;
+    public ParticleSystem sprinkler;
+    private bool isPlayerMoving = false;
 
 	private void Start ()
 	{
@@ -29,7 +31,20 @@ public class LaserGopherBehavior : MonoBehaviour {
 	    player = PlayerHelper.GetPlayer();
 	    freezeScript = FreezeHelper.GetFreezeScript();
 	    SetUnderground();
+	    sprinkler.Stop();
 	}
+
+    // Gopher behavior when it detects movement
+    public void AlertOn()
+    {
+        sprinkler.transform.rotation = transform.rotation;
+        sprinkler.Play();
+    }
+
+    public void AlertOff()
+    {
+        sprinkler.Stop();
+    }
 
 	private void Update () {
         countDown -= Time.deltaTime;
@@ -113,18 +128,16 @@ public class LaserGopherBehavior : MonoBehaviour {
     private void SetDetect()
     {
         gopherState = GopherState.Detect;
-        freezeScript.BeginFreezeTime();
+        freezeScript.BeginFreezeTime(gameObject.GetComponent<LaserGopherBehavior>());
         countDown = freezeTime;
     }
 
     private void Detect()
     {
         // Determine if Detect state is done
-        if (countDown <= 0)
-        {
-            freezeScript.EndFreezeTime();
-            gopherState = GopherState.Sink;
-        }
+        if (!(countDown <= 0)) return;
+        freezeScript.EndFreezeTime();
+        gopherState = GopherState.Sink;
     }
 
     private void Sink()

@@ -16,14 +16,18 @@ public class FreezeTime : MonoBehaviour {
 	private Vector3 lastLeftPos;
 	private Vector3 lastRightPos;
 
+	private LaserGopherBehavior laserGopherBehavior;
+
 	private void Start ()
 	{
 		freezeTime = false;
 		StartCoroutine(DetectMovement());
 	}
 
-	public void BeginFreezeTime()
+	public void BeginFreezeTime(LaserGopherBehavior laserGopherBehavior)
 	{
+		// this is a problem if there are multiple gophers
+		this.laserGopherBehavior = laserGopherBehavior;
 		Debug.Log("begin freeze time");
 		FetchHands();
 		freezeTime = true;
@@ -46,7 +50,12 @@ public class FreezeTime : MonoBehaviour {
 				if (MovedTooMuch(newLeftPos, newRightPos))
 				{
 					Debug.Log("You moved!");
+					laserGopherBehavior.AlertOn();
 					youMovedSound.Play();
+				}
+				else
+				{
+					laserGopherBehavior.AlertOff();
 				}
 				lastLeftPos = newLeftPos;
 				lastRightPos = newRightPos;
