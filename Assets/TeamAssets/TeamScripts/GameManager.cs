@@ -19,6 +19,9 @@ public class GameManager : MonoBehaviour {
     // Plants that represent lives
     public GameObject[] plantLives;
     public GameObject deadPlantPrefab;
+    
+    // Feed meter
+    public GameObject feedNeedle;
 
     private void Start()
     {
