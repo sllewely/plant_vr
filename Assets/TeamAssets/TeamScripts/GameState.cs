@@ -5,7 +5,8 @@ using UnityEngine;
 public class GameState : MonoBehaviour {
 
     int thingsEatenCounter = 0;
-    int score = 15;
+    public int startScore;
+    int score;
     public int targetScore;
     int health = 3;
 
@@ -13,6 +14,7 @@ public class GameState : MonoBehaviour {
 
     private void Start()
     {
+        score = startScore;
         feedNeedle = GameObject.Find("Feed_meter/Needle");
         RotateNeedle();
     }
