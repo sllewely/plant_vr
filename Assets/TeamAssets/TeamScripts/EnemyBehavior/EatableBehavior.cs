@@ -29,6 +29,7 @@ public class EatableBehavior : MonoBehaviour {
                 // Add the score
                 gameManager.GetComponent<GameState>().EatSomething(gameObject);
                 other.GetComponent<AudioSource>().Play();
+                other.GetComponentInChildren<ParticleSystem>().Play();
                 // Deactivate the hand
                 grab.isHolding = false;
 
