@@ -3,21 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class EatingRegionBehavior : MonoBehaviour {
+    private AudioSource omnomnomPlayer;
+    private ParticleSystem eatParticles;
 
-    // public GameObject gameStateObject;
-    // public AudioSource omnomnom;
-
-    void OnTriggerEnter(Collider other)
+    void Start()
     {
-        Debug.Log("On trigger enter");
-        // perhaps raw strings like "Prey" should belong to some class
-        // and called like other.tag == TeamTags.Prey
-        if (other.tag == "Prey") {
-            // omnomnom.Play();
-            GameObject prey = other.gameObject;
-            // gameStateObject.GetComponent<GameState>().eatSomething(prey);
-
-            Destroy(prey);
-        }
+        omnomnomPlayer = GetComponent<AudioSource>();
+        eatParticles = GetComponentInChildren<ParticleSystem>();
+    }
+    public void playEatEffects()
+    {
+        omnomnomPlayer.Play();
+        eatParticles.Play();
     }
 }
