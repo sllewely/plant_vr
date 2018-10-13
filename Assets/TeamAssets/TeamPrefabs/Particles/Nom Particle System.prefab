@@ -9,31 +9,31 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 1116407518179470}
+  m_RootGameObject: {fileID: 1486965062602642}
   m_IsPrefabParent: 1
---- !u!1 &1116407518179470
+--- !u!1 &1486965062602642
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 5
   m_Component:
-  - component: {fileID: 4642058478276214}
-  - component: {fileID: 198762512571554732}
-  - component: {fileID: 199075593071051144}
+  - component: {fileID: 4531741650082436}
+  - component: {fileID: 198425939914549494}
+  - component: {fileID: 199809173127622844}
   m_Layer: 0
-  m_Name: Sprinkler Particle System
+  m_Name: Nom Particle System
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4642058478276214
+--- !u!4 &4531741650082436
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1116407518179470}
+  m_GameObject: {fileID: 1486965062602642}
   m_LocalRotation: {x: -0, y: -0.033985022, z: -0, w: 0.9994224}
   m_LocalPosition: {x: -13.851115, y: 0.6522594, z: -41.29054}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -41,14 +41,14 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: -3.8950002, z: 0}
---- !u!198 &198762512571554732
+--- !u!198 &198425939914549494
 ParticleSystem:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1116407518179470}
+  m_GameObject: {fileID: 1486965062602642}
   serializedVersion: 5
-  lengthInSec: 1
+  lengthInSec: 0.2
   simulationSpeed: 1
   stopAction: 0
   looping: 0
@@ -173,7 +173,7 @@ ParticleSystem:
     startSpeed:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 10
+      scalar: 7
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -620,7 +620,7 @@ ParticleSystem:
     gravityModifier:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 1.5
+      scalar: 2
       minScalar: 0
       maxCurve:
         serializedVersion: 2
@@ -821,7 +821,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 300
+      scalar: 100
       minScalar: 10
       maxCurve:
         serializedVersion: 2
@@ -1263,13 +1263,13 @@ ParticleSystem:
     enabled: 0
     gradient:
       serializedVersion: 2
-      minMaxState: 1
+      minMaxState: 3
       minColor: {r: 1, g: 1, b: 1, a: 1}
       maxColor: {r: 1, g: 1, b: 1, a: 1}
       maxGradient:
         serializedVersion: 2
-        key0: {r: 1, g: 1, b: 1, a: 1}
-        key1: {r: 0, g: 0, b: 0, a: 0.13235295}
+        key0: {r: 0.28773582, g: 1, b: 0.32679135, a: 1}
+        key1: {r: 0.16589782, g: 0.46226418, b: 0.14173195, a: 1}
         key2: {r: 0, g: 0, b: 0, a: 0}
         key3: {r: 0, g: 0, b: 0, a: 0}
         key4: {r: 0, g: 0, b: 0, a: 0}
@@ -1285,8 +1285,8 @@ ParticleSystem:
         ctime6: 0
         ctime7: 0
         atime0: 0
-        atime1: 56861
-        atime2: 65535
+        atime1: 65535
+        atime2: 0
         atime3: 0
         atime4: 0
         atime5: 0
@@ -1294,7 +1294,7 @@ ParticleSystem:
         atime7: 0
         m_Mode: 0
         m_NumColorKeys: 2
-        m_NumAlphaKeys: 3
+        m_NumAlphaKeys: 2
       minGradient:
         serializedVersion: 2
         key0: {r: 0.9433962, g: 0.9070033, b: 0, a: 1}
@@ -4590,13 +4590,13 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     vectorLabel1_3: W
---- !u!199 &199075593071051144
+--- !u!199 &199809173127622844
 ParticleSystemRenderer:
   serializedVersion: 5
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1116407518179470}
+  m_GameObject: {fileID: 1486965062602642}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -4606,7 +4606,7 @@ ParticleSystemRenderer:
   m_ReflectionProbeUsage: 0
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100000, guid: 0c586195b1c9ab34c8c41e9451d98009, type: 2}
+  - {fileID: 2100000, guid: 2a750e82920f33d4ebf9c39ab2efb801, type: 2}
   - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
