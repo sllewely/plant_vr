@@ -6,13 +6,6 @@ public class EatingRegionBehavior : MonoBehaviour {
 
     // public GameObject gameStateObject;
     // public AudioSource omnomnom;
-    private ParticleSystem sprayParticles;
-    
-    void Start()
-    {
-        sprayParticles = GetComponentInChildren<ParticleSystem>();
-    }
-        
 
     void OnTriggerEnter(Collider other)
     {
@@ -25,7 +18,6 @@ public class EatingRegionBehavior : MonoBehaviour {
             // gameStateObject.GetComponent<GameState>().eatSomething(prey);
 
             Destroy(prey);
-            sprayParticles.Play();
         }
     }
 }
