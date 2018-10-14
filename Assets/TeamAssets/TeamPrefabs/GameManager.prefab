@@ -52,6 +52,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c75847d6620965c42a0e700ade6d3e26, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  startScore: 15
+  scoreDrain: 1
+  timeBetweenDrain: 2
+  targetScore: 100
 --- !u!114 &114574270347711434
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -73,3 +77,4 @@ MonoBehaviour:
   - {fileID: 0}
   deadPlantPrefab: {fileID: 1894028854495856, guid: 569b9af3f7d80844a8d49f9e03ff86f7,
     type: 2}
+  feedNeedle: {fileID: 0}
