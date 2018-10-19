@@ -1,10 +1,13 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 
 public class ScriptedLaserGopherBehavior : MonoBehaviour {
     private enum GopherState { Underground, Rise, Rotate, Detect, Sink }
     private GopherState gopherState = GopherState.Underground;
     float countDown;
+    
     public GameObject target;
+    private BunnyBehavior bunnyScript;
     
     // Underground State variables
     public float undergroundTime;
@@ -27,9 +30,10 @@ public class ScriptedLaserGopherBehavior : MonoBehaviour {
 
 	private void Start ()
 	{
-	    sprinkler = GetComponent<ParticleSystem>();
+	    bunnyScript = target.GetComponent<BunnyBehavior>();
+	    sprinkler = GetComponentInChildren<ParticleSystem>();
 	    faceAwayRot = transform.rotation;
-	    freezeScript = FreezeHelper.GetFreezeScript();
+//	    freezeScript = FreezeHelper.GetFreezeScript();
 	    SetUnderground();
 	    sprinkler.Stop();
 	}
@@ -107,6 +111,8 @@ public class ScriptedLaserGopherBehavior : MonoBehaviour {
         gopherState = GopherState.Rotate;
         
         // Recalculate player location at the state of each rotation cycle
+        bunnyScript.StopHopping();
+
         var playerLocation = target.transform.position;
         var targetDir = playerLocation - transform.position;
         destRot = Quaternion.LookRotation(targetDir, Vector3.up);
@@ -129,6 +135,7 @@ public class ScriptedLaserGopherBehavior : MonoBehaviour {
     {
         gopherState = GopherState.Detect;
 //        freezeScript.BeginFreezeTime(gameObject.GetComponent<LaserGopherBehavior>());
+        StartCoroutine(BunnyWaitThenJump());
         countDown = freezeTime;
     }
 
@@ -148,6 +155,38 @@ public class ScriptedLaserGopherBehavior : MonoBehaviour {
         if (transform.position.y <= verticalDepth)
         {
             SetUnderground();
+        }
+    }
+    
+    IEnumerator BunnyWaitThenJump()
+    {
+        for (var i = 0; ; i++ )
+        {
+            Debug.Log("case: " + i);
+            switch (i)
+            {
+                case 0:
+                    yield return new WaitForSeconds(0.5f);
+                    break;
+                case 1:
+                    bunnyScript.OneHop();
+                    yield return new WaitForSeconds(0.5f);
+                    break;
+                case 2:
+//                    AlertOn();
+                    Debug.Log("alert on");
+                    yield return new WaitForSeconds(0.5f);
+                    break;
+                case 3:
+                    Debug.Log("explode bunny");
+                    bunnyScript.ExplodeBunny();
+                    yield return null;
+                    break;
+                default:
+                   Debug.Log("case " + i);
+                    break;
+            }
+
         }
     }
 }

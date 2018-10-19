@@ -44,6 +44,16 @@ public class BunnyBehavior : MonoBehaviour {
         bunnyState = BunnyState.Still;
         StopCoroutine(jumpingBunny);
     }
+
+    public void OneHop()
+    {
+        rigidBody.AddForce(jumpVector);
+    }
+
+    public void ExplodeBunny()
+    {
+        rigidBody.AddForce(new Vector3(50f, 200f, 0));
+    }
 	
     private void OnCollisionStay(Collision collision)
     {
@@ -65,7 +75,7 @@ public class BunnyBehavior : MonoBehaviour {
             }
         }
         isGrounded = false;
-        rigidBody.AddForce(jumpVector);
+        OneHop();
     }
 
     IEnumerator JumpingBunny()
