@@ -4,6 +4,11 @@ using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
 public class BunnyBehavior : MonoBehaviour {
+    
+    public enum BunnyState { Hopping, Still }
+
+    public BunnyState bunnyState;
+    private Coroutine jumpingCoroutine;
 
     Rigidbody rigidBody;
     Vector3 jumpVector = new Vector3(50f, 100f, 0);
@@ -17,11 +22,27 @@ public class BunnyBehavior : MonoBehaviour {
     Quaternion rotateLeft = Quaternion.Euler(new Vector3(0, -50, 0));
 
     private IEnumerator jumpingBunny;
+    
+    
 
     // Use this for initialization
     void Start () {
         rigidBody = GetComponent<Rigidbody>();
-        StartCoroutine(JumpingBunny());
+
+        jumpingBunny = JumpingBunny();
+        StartHopping();
+    }
+
+    public void StartHopping()
+    {
+        bunnyState = BunnyState.Hopping;
+        StartCoroutine(jumpingBunny);
+    }
+
+    public void StopHopping()
+    {
+        bunnyState = BunnyState.Still;
+        StopCoroutine(jumpingBunny);
     }
 	
     private void OnCollisionStay(Collision collision)
