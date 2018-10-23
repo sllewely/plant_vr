@@ -54,7 +54,7 @@ public class EnemySpawner : MonoBehaviour {
     void Spawn()
     {
         float x = Random.Range(spawnBounds.min.x, spawnBounds.max.x);
-        float y = Random.Range(spawnBounds.min.y, spawnBounds.max.y);
+        float y = gameObject.transform.position.y;
         float z = Random.Range(spawnBounds.min.z, spawnBounds.max.z);
         Vector3 spawnPosition = new Vector3(x, y, z);
 
