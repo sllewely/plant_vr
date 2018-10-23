@@ -681,10 +681,10 @@ ParticleSystem:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1148214068804622}
   serializedVersion: 5
-  lengthInSec: 5
+  lengthInSec: 1
   simulationSpeed: 1
   stopAction: 0
-  looping: 1
+  looping: 0
   prewarm: 0
   playOnAwake: 1
   useUnscaledTime: 0
@@ -5230,7 +5230,7 @@ ParticleSystemRenderer:
   m_ReflectionProbeUsage: 0
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100000, guid: c6ea197eb96087144b4e0bd3a249d19a, type: 2}
+  - {fileID: 2100000, guid: 0c586195b1c9ab34c8c41e9451d98009, type: 2}
   - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
