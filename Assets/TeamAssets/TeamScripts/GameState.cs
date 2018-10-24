@@ -49,7 +49,11 @@ public class GameState : MonoBehaviour {
     private void RotateNeedle()
     {
         var z = score / (float)targetScore * 180;
-        z = (z > 180) ? 180 : z;
+        if (z > 180)
+        {
+            VictoryOn();
+            z = 180;
+        }
         feedNeedle.transform.localRotation = Quaternion.Euler(0, 0, z);
     }
     
@@ -66,5 +70,10 @@ public class GameState : MonoBehaviour {
             
             yield return new WaitForSeconds(timeBetweenDrain);
         }
+    }
+
+    private void VictoryOn()
+    {
+        GameObject.Find("ScoreUI/WinText").SetActive(true);
     }
 }
