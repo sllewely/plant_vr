@@ -42,7 +42,7 @@ public class GameState : MonoBehaviour {
 
     private void SetScoreUi()
     {
-        GameObject gameUi = GameObject.Find("ScreenUi");
+        GameObject gameUi = GameObject.Find("ScoreUi");
         gameUi.GetComponent<ScoreTextBehavior>().SetScore(score);
     }
 
