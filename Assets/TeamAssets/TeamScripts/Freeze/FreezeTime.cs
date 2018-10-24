@@ -18,6 +18,9 @@ public class FreezeTime : MonoBehaviour {
 
 	private LaserGopherBehavior laserGopherBehavior;
 
+	// otherwise you are always detected for the first frame
+	private bool firstFrameOfFreeze = true;
+
 	private void Start ()
 	{
 		freezeTime = false;
@@ -30,6 +33,7 @@ public class FreezeTime : MonoBehaviour {
 		this.laserGopherBehavior = laserGopherBehavior;
 		Debug.Log("begin freeze time");
 		FetchHands();
+		firstFrameOfFreeze = true;
 		freezeTime = true;
 	}
 
@@ -47,7 +51,11 @@ public class FreezeTime : MonoBehaviour {
 			{
 				var newLeftPos = leftController.transform.position;
 				var newRightPos = rightController.transform.position;
-				if (MovedTooMuch(newLeftPos, newRightPos))
+				if (firstFrameOfFreeze)
+				{
+					firstFrameOfFreeze = false;
+				}
+				else if (MovedTooMuch(newLeftPos, newRightPos))
 				{
 					Debug.Log("You moved!");
 					laserGopherBehavior.AlertOn();
