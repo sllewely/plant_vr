@@ -49,6 +49,7 @@ public class GameState : MonoBehaviour {
     private void RotateNeedle()
     {
         var z = score / (float)targetScore * 180;
+        z = (z > 180) ? 180 : z;
         feedNeedle.transform.localRotation = Quaternion.Euler(0, 0, z);
     }
     
