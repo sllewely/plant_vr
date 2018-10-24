@@ -24,21 +24,27 @@ public class GameState : MonoBehaviour {
         RotateNeedle();
         StartCoroutine(DrainScore());
     }
+    
+    // public for debugging
+    public void AddScore(int change)
+    {
+        score += change;
+        SetScoreUi();
+        RotateNeedle();
+//        PrintScore();
+    }
 
     public void EatSomething(GameObject theThing)
     {
         // I'm imaginging something like score += theThing.pointValue
-        this.thingsEatenCounter += 1;
+        thingsEatenCounter += 1;
         EatableBehavior eatableBehavior = theThing.GetComponent<EatableBehavior>();
-        this.score += eatableBehavior.points;
-        SetScoreUi();
-        RotateNeedle();
-        PrintScore();
+        AddScore(eatableBehavior.points);
     }
 
     public void PrintScore()
     {
-        Debug.Log("wow I ate " + thingsEatenCounter + " things and have " + score + "points");
+        Debug.Log("wow I ate " + thingsEatenCounter + " things and have " + score + " points");
     }
 
     private void SetScoreUi()
@@ -65,8 +71,7 @@ public class GameState : MonoBehaviour {
         {
             if (score - scoreDrain >= 0)
             {
-                score -= scoreDrain;
-                RotateNeedle();
+                AddScore(-scoreDrain);
             }
             
             yield return new WaitForSeconds(timeBetweenDrain);
@@ -76,5 +81,6 @@ public class GameState : MonoBehaviour {
     private void VictoryOn()
     {
         GameObject.Find("ScreenUi/WinText").GetComponent<Text>().text = "Victory!";
+        GetComponent<GameManager>().SetGameOver();
     }
 }

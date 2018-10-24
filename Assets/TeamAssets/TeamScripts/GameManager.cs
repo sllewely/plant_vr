@@ -40,6 +40,11 @@ public class GameManager : MonoBehaviour {
             RestartGame();
         }
 
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            GetComponent<GameState>().AddScore(15);
+        }
+
         if (timeLeftInGame < 0)
         {
             Debug.Log("Time is up!");
@@ -71,7 +76,7 @@ public class GameManager : MonoBehaviour {
         return lives <= 0;
     }
 
-    void SetGameOver()
+    public void SetGameOver()
     {
         gameOver.SetActive(true);
         GameObject[] spawners = GameObject.FindGameObjectsWithTag("Spawner");
