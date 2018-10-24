@@ -20,9 +20,6 @@ public class GameManager : MonoBehaviour {
     public GameObject[] plantLives;
     public GameObject deadPlantPrefab;
     
-    // Feed meter
-    public GameObject feedNeedle;
-
     private void Start()
     {
         timeLeftInGame = timeLimit;

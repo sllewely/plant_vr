@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameState : MonoBehaviour {
 
@@ -74,6 +75,6 @@ public class GameState : MonoBehaviour {
 
     private void VictoryOn()
     {
-        GameObject.Find("ScoreUI/WinText").SetActive(true);
+        GameObject.Find("ScreenUi/WinText").GetComponent<Text>().text = "Victory!";
     }
 }
