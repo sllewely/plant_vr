@@ -6,6 +6,11 @@ public class FreezeHelper {
 
     public static FreezeTime GetFreezeScript()
     {
-        return GameObject.Find("FreezeManager").GetComponent<FreezeTime>();
+        var freezeManager = GameObject.Find("FreezeManager").GetComponent<FreezeTime>();
+        if (freezeManager == null)
+        {
+            Debug.LogError("FreezeManager expected but not found in scene");
+        }
+        return freezeManager;
     }
 }
