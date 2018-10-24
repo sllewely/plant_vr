@@ -14,6 +14,8 @@ public class EnemySpawner : MonoBehaviour {
     public int minWave;
     public int maxWave;
 
+    public List<GameObject> spawnLocations;
+
     private Bounds spawnBounds;
 
     public GameObject[] enemies;
@@ -53,10 +55,7 @@ public class EnemySpawner : MonoBehaviour {
 
     void Spawn()
     {
-        float x = Random.Range(spawnBounds.min.x, spawnBounds.max.x);
-        float y = gameObject.transform.position.y;
-        float z = Random.Range(spawnBounds.min.z, spawnBounds.max.z);
-        Vector3 spawnPosition = new Vector3(x, y, z);
+        Vector3 spawnPosition = spawnLocations.Count > 0 ? GetRandomPosFromLocations() : GetRandomFromBox();
 
         GameObject newEnemy = Instantiate(NextEnemy(), spawnPosition, transform.rotation);
         Destroy(newEnemy, timeToDestroy);
@@ -64,6 +63,19 @@ public class EnemySpawner : MonoBehaviour {
 
     GameObject NextEnemy()
     {
-        return enemies[Random.Range(0, enemies.Length - 1)];
+        return enemies[Random.Range(0, enemies.Length)];
+    }
+
+    Vector3 GetRandomFromBox()
+    {
+        float x = Random.Range(spawnBounds.min.x, spawnBounds.max.x);
+        float y = gameObject.transform.position.y;
+        float z = Random.Range(spawnBounds.min.z, spawnBounds.max.z);
+        return new Vector3(x, y, z);
+    }
+
+    Vector3 GetRandomPosFromLocations()
+    {
+        return spawnLocations[Random.Range(0, spawnLocations.Count)].transform.position;
     }
 }
