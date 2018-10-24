@@ -22,17 +22,10 @@ public class EnemySpawner : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-
-        //startingPos = transform.position;
         spawnBounds = GetComponent<Collider>().bounds;
         waveCount = Random.Range(minWave, maxWave);
         StartCoroutine(Spawner());
     }
-
-    // Update is called once per frame
-    void Update () {
-		
-	}
 
     IEnumerator Spawner()
     {
