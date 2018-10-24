@@ -53,7 +53,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startScore: 15
-  scoreDrain: 1
+  scoreDrain: 3
   timeBetweenDrain: 2
   targetScore: 100
 --- !u!114 &114574270347711434
@@ -67,7 +67,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91b59f8255b639e4fb64fb29992a3f59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeLimit: 60
+  timeLimit: 90
   gameMenu: {fileID: 0}
   menuHand: {fileID: 0}
   gameOver: {fileID: 0}

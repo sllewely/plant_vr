@@ -213,7 +213,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1148214068804622}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 3, z: 0}
+  m_LocalPosition: {x: 0, y: 11.4, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4936750529860450}
@@ -291,7 +291,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1831296656569168}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -1.4, z: 0}
+  m_LocalPosition: {x: -10.93, y: -1.4, z: -33.47}
   m_LocalScale: {x: 0.05, y: 0.05, z: 0.05}
   m_Children:
   - {fileID: 4995252209862130}
@@ -666,13 +666,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74b8eb12e48ee334fb779251ba5140be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  undergroundTime: 2
+  undergroundTime: 6
   faceAwayRot: {x: 0, y: 0, z: 0, w: 0}
-  verticalSpeed: 0.5
+  verticalSpeed: 1
   verticalHeight: 0.3
   verticalDepth: -1.5
-  rotateSpeed: 20
-  freezeTime: 10
+  rotateSpeed: 50
+  freezeTime: 4
   sprinkler: {fileID: 198781286127873704}
 --- !u!198 &198781286127873704
 ParticleSystem:
