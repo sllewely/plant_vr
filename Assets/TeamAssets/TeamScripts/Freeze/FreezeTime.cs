@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.PostProcessing;
 
 public class FreezeTime : MonoBehaviour {
 	
@@ -21,7 +22,13 @@ public class FreezeTime : MonoBehaviour {
 	// otherwise you are always detected for the first frame
 	private bool firstFrameOfFreeze = true;
 
-	private void Start ()
+    // PP Damage Effect
+    public float damageDuration;
+    public PostProcessingProfile damagePPP;
+    public AnimationCurve damageAC;
+    public Color vignetteColor = new Vector4(0.1F, 0, 0, 1);
+
+    private void Start ()
 	{
 		freezeTime = false;
 		StartCoroutine(DetectMovement());
@@ -60,7 +67,8 @@ public class FreezeTime : MonoBehaviour {
 					Debug.Log("You moved!");
 					laserGopherBehavior.AlertOn();
 					youMovedSound.Play();
-				}
+                    StartCoroutine(DamagePulse(vignetteColor));
+                }
 				else
 				{
 					laserGopherBehavior.AlertOff();
@@ -88,4 +96,33 @@ public class FreezeTime : MonoBehaviour {
 		leftController = PlayerHelper.GetLeftHand();
 		rightController = PlayerHelper.GetRightHand();
 	}
+
+    public IEnumerator DamagePulse(Color screenColor)
+    {
+        var vignetteValue = damagePPP.vignette.settings;
+        vignetteValue.intensity = 0.5f;
+        vignetteValue.color = screenColor;
+        damagePPP.vignette.settings = vignetteValue;
+
+        float journey = 0f;
+        float oscillate = 0f;
+        bool increasing = true;
+
+        while (journey < damageDuration)
+        {
+            journey = journey + Time.deltaTime;
+            if (journey < damageDuration*0.5f)
+                oscillate += Time.deltaTime;
+            else
+                oscillate -= Time.deltaTime;
+
+            float percent = Mathf.Abs(Mathf.Clamp01(oscillate / (damageDuration * 0.5f)));
+            float curvePercent = damageAC.Evaluate(percent);
+            //Debug.Log(curvePercent);
+            vignetteValue.intensity = Mathf.Lerp(0.5f, 0.9f, curvePercent);
+            damagePPP.vignette.settings = vignetteValue;
+
+            yield return new WaitForSeconds(0.01f);
+        }
+    }
 }
