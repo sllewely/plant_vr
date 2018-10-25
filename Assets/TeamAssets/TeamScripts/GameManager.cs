@@ -17,23 +17,23 @@ public class GameManager : MonoBehaviour {
     Vector3 offset = new Vector3(0, 0.5f, 0);
 
     // Plants that represent lives
-    public GameObject[] plantLives;
-    public GameObject deadPlantPrefab;
+//    public GameObject[] plantLives;
+//    public GameObject deadPlantPrefab;
     
     private void Start()
     {
         timeLeftInGame = timeLimit;
-        lives = plantLives.Length;
+//        lives = plantLives.Length;
     }
 
     // Update is called once per frame
     void Update () {
         timeLeftInGame -= Time.deltaTime;
         // TODO: input
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            LoseLife();   
-        }
+//        if (Input.GetKeyDown(KeyCode.Space))
+//        {
+//            LoseLife();   
+//        }
 		
         if (Input.GetKeyDown(KeyCode.R))
         {
@@ -52,29 +52,29 @@ public class GameManager : MonoBehaviour {
         }
 	}
 
-    void LoseLife()
-    {
-        if (IsDead())
-        {
-            Debug.LogWarning("Already dead! Lives: " + lives);
-            return;
-        }
+//    void LoseLife()
+//    {
+//        if (IsDead())
+//        {
+//            Debug.LogWarning("Already dead! Lives: " + lives);
+//            return;
+//        }
+//
+//        lives--;
+//        GameObject plantToKill = plantLives[lives];
+//        Transform plantPosition = plantToKill.transform;
+//        Instantiate(deadPlantPrefab, plantPosition.position + offset, plantPosition.rotation);
+//        Destroy(plantToKill);
+//        if (IsDead())
+//        {
+//            SetGameOver();
+//        }
+//    }
 
-        lives--;
-        GameObject plantToKill = plantLives[lives];
-        Transform plantPosition = plantToKill.transform;
-        Instantiate(deadPlantPrefab, plantPosition.position + offset, plantPosition.rotation);
-        Destroy(plantToKill);
-        if (IsDead())
-        {
-            SetGameOver();
-        }
-    }
-
-    bool IsDead()
-    {
-        return lives <= 0;
-    }
+//    bool IsDead()
+//    {
+//        return lives <= 0;
+//    }
 
     public void SetGameOver()
     {

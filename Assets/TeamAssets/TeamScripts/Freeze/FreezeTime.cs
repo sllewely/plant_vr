@@ -66,13 +66,9 @@ public class FreezeTime : MonoBehaviour {
 				}
 				else if (MovedTooMuch(newLeftPos, newRightPos))
 				{
-					Debug.Log("You moved!");
-					laserGopherBehavior.AlertOn();
-					youMovedSound.Play();
-                    StartCoroutine(DamagePulse(vignetteColor));
-                    firstFrameOfFreeze = true;
-                    yield return new WaitForSeconds(gracePeriod);
-                }
+					YouMoved();
+					yield return new WaitForSeconds(gracePeriod);
+				}
 				else
 				{
 					laserGopherBehavior.AlertOff();
@@ -82,6 +78,16 @@ public class FreezeTime : MonoBehaviour {
 			}
 			yield return new WaitForSeconds(detectInterval);
 		}
+	}
+
+	// You Moved consequences
+	private void YouMoved()
+	{
+		Debug.Log("You moved!");
+		laserGopherBehavior.AlertOn();
+		youMovedSound.Play();
+		StartCoroutine(DamagePulse(vignetteColor));
+		firstFrameOfFreeze = true;
 	}
 
 	private bool MovedTooMuch(Vector3 newLeftPos, Vector3 newRightPos)

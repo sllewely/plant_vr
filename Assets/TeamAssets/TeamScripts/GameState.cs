@@ -12,11 +12,13 @@ public class GameState : MonoBehaviour {
     public int timeBetweenDrain;
 
     int targetScore;
-    int health = 3;
-    
+    int health;
+
+    public int startingHealthEasy;
     public int scoreDrainEasy;
     public int targetScoreEasy;
 
+    public int startingHealthNormal;
     public int scoreDrainNormal;
     public int targetScoreNormal;
     
@@ -43,11 +45,17 @@ public class GameState : MonoBehaviour {
         {
             SetNormalDifficulty();
         }
+
+        if (Input.GetKeyDown(KeyCode.D))
+        {
+            TakeDamage();
+        }
     }
 
     public void SetEasyDifficulty()
     {
         Debug.Log("Difficulty Easy");
+        health = startingHealthEasy;
         scoreDrain = scoreDrainEasy;
         targetScore = targetScoreEasy;
     }
@@ -55,6 +63,7 @@ public class GameState : MonoBehaviour {
     public void SetNormalDifficulty()
     {
         Debug.Log("Difficulty Normal");
+        health = startingHealthNormal;
         scoreDrain = scoreDrainNormal;
         targetScore = targetScoreNormal;
     }
@@ -74,6 +83,15 @@ public class GameState : MonoBehaviour {
         thingsEatenCounter += 1;
         EatableBehavior eatableBehavior = theThing.GetComponent<EatableBehavior>();
         AddScore(eatableBehavior.points);
+    }
+
+    public void TakeDamage()
+    {
+        health -= 1;
+        if (health <= 0)
+        {
+            GetComponent<GameManager>().SetGameOver();
+        }
     }
 
     public void PrintScore()
