@@ -8,11 +8,17 @@ public class GameState : MonoBehaviour {
     int thingsEatenCounter = 0;
     public int startScore;
     int score;
-    public int scoreDrain;
+    int scoreDrain;
     public int timeBetweenDrain;
-    
-    public int targetScore;
+
+    int targetScore;
     int health = 3;
+    
+    public int scoreDrainEasy;
+    public int targetScoreEasy;
+
+    public int scoreDrainNormal;
+    public int targetScoreNormal;
     
 
     private GameObject feedNeedle;
@@ -21,8 +27,36 @@ public class GameState : MonoBehaviour {
     {
         score = startScore;
         feedNeedle = GameObject.Find("Feed_meter/Needle");
+        SetNormalDifficulty();
         RotateNeedle();
         StartCoroutine(DrainScore());
+    }
+
+    private void Update()
+    {
+        
+        if (Input.GetKeyDown("1"))
+        {
+            SetEasyDifficulty();
+        }
+        if (Input.GetKeyDown("2"))
+        {
+            SetNormalDifficulty();
+        }
+    }
+
+    public void SetEasyDifficulty()
+    {
+        Debug.Log("Difficulty Easy");
+        scoreDrain = scoreDrainEasy;
+        targetScore = targetScoreEasy;
+    }
+
+    public void SetNormalDifficulty()
+    {
+        Debug.Log("Difficulty Normal");
+        scoreDrain = scoreDrainNormal;
+        targetScore = targetScoreNormal;
     }
     
     // public for debugging
