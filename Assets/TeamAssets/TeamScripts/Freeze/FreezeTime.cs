@@ -9,7 +9,9 @@ public class FreezeTime : MonoBehaviour {
 	private bool freezeTime;
 	public float movementBuffer;
 	public float detectInterval;
-	public AudioSource youMovedSound;
+    public float gracePeriod;
+    public AudioSource youMovedSound;
+
 
 	// Hand positions
 	private GameObject leftController;
@@ -68,6 +70,8 @@ public class FreezeTime : MonoBehaviour {
 					laserGopherBehavior.AlertOn();
 					youMovedSound.Play();
                     StartCoroutine(DamagePulse(vignetteColor));
+                    firstFrameOfFreeze = true;
+                    yield return new WaitForSeconds(gracePeriod);
                 }
 				else
 				{
