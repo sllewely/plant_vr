@@ -32,6 +32,7 @@ ModelImporter:
     400024: wing
     400026: wing1
     2100000: lambert1
+    2100002: lambert2
     2300000: ABDOMEN
     2300002: armL
     2300004: armL1
@@ -65,7 +66,7 @@ ModelImporter:
     4300016: flameEye2
     4300018: flameEye1
     4300020: skull
-    7400000: Take 001
+    7400000: SkullFly idle
     9500000: //RootNode
   externalObjects: {}
   materials:
@@ -96,7 +97,7 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Take 001
+      name: SkullFly idle
       takeName: Take 001
       firstFrame: 1
       lastFrame: 13
