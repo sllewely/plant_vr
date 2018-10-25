@@ -30,8 +30,11 @@ public class FreezeTime : MonoBehaviour {
     public AnimationCurve damageAC;
     public Color vignetteColor = new Vector4(0.1F, 0, 0, 1);
 
+	private GameState gameState;
+
     private void Start ()
-	{
+    {
+	    gameState = GameObject.Find("GameManager").GetComponent<GameState>();
 		freezeTime = false;
 		StartCoroutine(DetectMovement());
 	}
@@ -86,6 +89,7 @@ public class FreezeTime : MonoBehaviour {
 		Debug.Log("You moved!");
 		laserGopherBehavior.AlertOn();
 		youMovedSound.Play();
+		gameState.TakeDamage();
 		StartCoroutine(DamagePulse(vignetteColor));
 		firstFrameOfFreeze = true;
 	}
