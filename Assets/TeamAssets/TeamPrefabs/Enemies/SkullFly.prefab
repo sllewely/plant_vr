@@ -1059,7 +1059,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minCircleSpeed: 0
   maxCircleSpeed: 5
-  forwardSpeed: -0.05
+  forwardSpeed: 0.05
   minXWaver: 0
   maxXWaver: 0.4
   minYWaver: 0
