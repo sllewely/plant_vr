@@ -1,10 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class EatingRegionBehavior : MonoBehaviour {
     private AudioSource omnomnomPlayer;
     private ParticleSystem eatParticles;
+    public UnityEvent eat;
 
     void Start()
     {
@@ -15,5 +17,6 @@ public class EatingRegionBehavior : MonoBehaviour {
     {
         omnomnomPlayer.Play();
         eatParticles.Play();
+        eat.Invoke();
     }
 }

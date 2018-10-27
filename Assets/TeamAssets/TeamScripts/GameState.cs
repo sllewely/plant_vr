@@ -57,6 +57,16 @@ public class GameState : MonoBehaviour {
         }
     }
 
+    public int GetScore()
+    {
+        return score;
+    }
+
+    public void SetScore(int newScore)
+    {
+        score = newScore;
+    }
+
     public void SetEasyDifficulty()
     {
         Debug.Log("Difficulty Easy");

@@ -50,7 +50,7 @@ public class Grab : MonoBehaviour {
                 TossObject(col.attachedRigidbody);
                 isHolding = false;
                 //TODO: turn off isHolding if prey "expires"
-                heldObject = heldObject = null;
+                heldObject = null;
             }
         }
     }
