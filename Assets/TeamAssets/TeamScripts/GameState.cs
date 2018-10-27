@@ -9,6 +9,8 @@ public class GameState : MonoBehaviour {
     public int startScore;
     int score;
     int scoreDrain;
+    private int drainDelay;
+    private bool drainBegin;
     public int timeBetweenDrain;
 
     int targetScore;
@@ -17,16 +19,19 @@ public class GameState : MonoBehaviour {
     public int startingHealthEasy;
     public int scoreDrainEasy;
     public int targetScoreEasy;
+    public int drainDelayEasy;
 
     public int startingHealthNormal;
     public int scoreDrainNormal;
     public int targetScoreNormal;
+    public int drainDelayNormal;
     
 
     private GameObject feedNeedle;
 
     private void Start()
     {
+        drainBegin = false;
         score = startScore;
         feedNeedle = GameObject.Find("Feed_meter/Needle");
         SetNormalDifficulty();
@@ -57,6 +62,7 @@ public class GameState : MonoBehaviour {
         Debug.Log("Difficulty Easy");
         health = startingHealthEasy;
         scoreDrain = scoreDrainEasy;
+        drainDelay = drainDelayEasy;
         targetScore = targetScoreEasy;
     }
 
@@ -65,6 +71,7 @@ public class GameState : MonoBehaviour {
         Debug.Log("Difficulty Normal");
         health = startingHealthNormal;
         scoreDrain = scoreDrainNormal;
+        drainDelay = drainDelayNormal;
         targetScore = targetScoreNormal;
     }
     
@@ -72,9 +79,7 @@ public class GameState : MonoBehaviour {
     public void AddScore(int change)
     {
         score += change;
-        SetScoreUi();
         RotateNeedle();
-//        PrintScore();
     }
 
     public void EatSomething(GameObject theThing)
@@ -107,6 +112,7 @@ public class GameState : MonoBehaviour {
 
     private void RotateNeedle()
     {
+        SetScoreUi();
         var z = score / (float)targetScore * 180;
         if (z > 180)
         {
@@ -121,9 +127,19 @@ public class GameState : MonoBehaviour {
     {
         while (true)
         {
-            if (score - scoreDrain >= 0)
+            if (!drainBegin)
+            {
+                drainBegin = true;
+                yield return new WaitForSeconds(drainDelay);
+            }
+            else if (score - scoreDrain >= 0)
             {
                 AddScore(-scoreDrain);
+            }
+            else
+            {
+                AddScore(-score);
+                GameOver();   
             }
             
             yield return new WaitForSeconds(timeBetweenDrain);
@@ -133,6 +149,11 @@ public class GameState : MonoBehaviour {
     private void VictoryOn()
     {
         GameObject.Find("ScreenUi/WinText").GetComponent<Text>().text = "Victory!";
+        GameOver();
+    }
+
+    private void GameOver()
+    {
         GetComponent<GameManager>().SetGameOver();
     }
 }
