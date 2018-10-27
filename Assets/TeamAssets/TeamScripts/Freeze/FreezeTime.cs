@@ -37,7 +37,12 @@ public class FreezeTime : MonoBehaviour {
 	    gameState = GameObject.Find("GameManager").GetComponent<GameState>();
 		freezeTime = false;
 		StartCoroutine(DetectMovement());
-	}
+
+        var vignetteValue = damagePPP.vignette.settings;
+        vignetteValue.intensity = 0.0f;
+        vignetteValue.color = vignetteColor;
+        damagePPP.vignette.settings = vignetteValue;
+    }
 
 	public void BeginFreezeTime(LaserGopherBehavior laserGopherBehavior)
 	{
@@ -90,7 +95,7 @@ public class FreezeTime : MonoBehaviour {
 		laserGopherBehavior.AlertOn();
 		youMovedSound.Play();
 		gameState.TakeDamage();
-		StartCoroutine(DamagePulse(vignetteColor));
+		StartCoroutine(DamagePulse());
 		firstFrameOfFreeze = true;
 	}
 
@@ -111,11 +116,9 @@ public class FreezeTime : MonoBehaviour {
 		rightController = PlayerHelper.GetRightHand();
 	}
 
-    public IEnumerator DamagePulse(Color screenColor)
+    public IEnumerator DamagePulse()
     {
         var vignetteValue = damagePPP.vignette.settings;
-        vignetteValue.intensity = 0.5f;
-        vignetteValue.color = screenColor;
         damagePPP.vignette.settings = vignetteValue;
 
         float journey = 0f;
@@ -133,10 +136,13 @@ public class FreezeTime : MonoBehaviour {
             float percent = Mathf.Abs(Mathf.Clamp01(oscillate / (damageDuration * 0.5f)));
             float curvePercent = damageAC.Evaluate(percent);
             //Debug.Log(curvePercent);
-            vignetteValue.intensity = Mathf.Lerp(0.5f, 0.9f, curvePercent);
+            vignetteValue.intensity = Mathf.Lerp(0.0f, 0.9f, curvePercent);
             damagePPP.vignette.settings = vignetteValue;
 
             yield return new WaitForSeconds(0.01f);
         }
+
+        vignetteValue.intensity = 0f;
+        damagePPP.vignette.settings = vignetteValue;
     }
 }
