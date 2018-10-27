@@ -36,6 +36,9 @@ public class TutorialManager : MonoBehaviour {
     public GameObject waspSpawner;
     public GameObject sprinkler;
 
+    public float sprinklerWaitTime = 10f;
+    private float sprinklerTimeLeft;
+
     private bool ateFly;
 
     //Stage 1 advancement criteria
@@ -53,12 +56,19 @@ public class TutorialManager : MonoBehaviour {
         Debug.Log("Start Tutorial");
         flyTransformPos = tutorialFly.transform.position;
 
+        sprinklerTimeLeft = sprinklerWaitTime;
+
     }
 
     // Update is called once per frame
     void Update () {
         leftDevice = SteamVR_Controller.Input((int)leftTrackedObject.index);
         rightDevice = SteamVR_Controller.Input((int)rightTrackedObject.index);
+
+        if (Input.GetKeyDown("space"))
+        {
+            SceneManager.LoadScene("MASTER_scene", LoadSceneMode.Single);
+        }
 
         switch (tutorialStage)
         {
@@ -123,6 +133,10 @@ public class TutorialManager : MonoBehaviour {
                 }
                 break;
             case 6: // Stage 6: Freeze
+                if (sprinklerTimeLeft <= 0)
+                    advanceStage();
+                else
+                    sprinklerTimeLeft -= Time.deltaTime;
                 break;
             case 7: // Stage 7: Squeeze both triggers to start game
                 if(leftDevice.GetPress(SteamVR_Controller.ButtonMask.Trigger)
@@ -162,4 +176,6 @@ public class TutorialManager : MonoBehaviour {
     {
         ateFly = true;
     }
+
+
 }
