@@ -8,6 +8,7 @@ public class Grab : MonoBehaviour {
     public bool isHolding = false;
     public float throwSpeed = 4.0f;
     public GameObject grabSpot;
+    public GameObject heldObject;
     // Use this for initialization
     void Start () {
         trackedObject = GetComponent<SteamVR_TrackedObject>();
@@ -38,6 +39,7 @@ public class Grab : MonoBehaviour {
                 //TODO: get below working--- turn off PreyBehavior scripts only
                 //PreyBehavior preyAI = col.gameObject.GetComponent<PreyBehaviour>();
                 //preyAI.enabled = false;
+                heldObject = col.gameObject;
             }
             if (device.GetPressUp(SteamVR_Controller.ButtonMask.Trigger))
             {
@@ -48,6 +50,7 @@ public class Grab : MonoBehaviour {
                 TossObject(col.attachedRigidbody);
                 isHolding = false;
                 //TODO: turn off isHolding if prey "expires"
+                heldObject = heldObject = null;
             }
         }
     }
