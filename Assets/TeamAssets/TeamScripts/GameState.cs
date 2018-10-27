@@ -64,6 +64,7 @@ public class GameState : MonoBehaviour {
         scoreDrain = scoreDrainEasy;
         drainDelay = drainDelayEasy;
         targetScore = targetScoreEasy;
+        RotateNeedle();
     }
 
     public void SetNormalDifficulty()
@@ -73,6 +74,7 @@ public class GameState : MonoBehaviour {
         scoreDrain = scoreDrainNormal;
         drainDelay = drainDelayNormal;
         targetScore = targetScoreNormal;
+        RotateNeedle();
     }
     
     // public for debugging

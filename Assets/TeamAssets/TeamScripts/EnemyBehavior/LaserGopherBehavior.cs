@@ -91,7 +91,7 @@ public class LaserGopherBehavior : MonoBehaviour {
     
     private void SetRise()
     {
-        Debug.Log("rising at " + transform.position + ": " + name);
+//        Debug.Log("rising at " + transform.position + ": " + name);
         gopherState = GopherState.Rise;
     }
 
