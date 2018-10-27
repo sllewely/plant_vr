@@ -129,13 +129,16 @@ public class TutorialManager : MonoBehaviour {
                 if (gameState.GetScore() < 3)
                 {
                     gameState.SetScore(3);
-                } else if (gameState.GetScore() >= gameState.targetScoreEasy)
+                } else if (gameState.GetScore()+15 >= gameState.targetScoreEasy) //TODO: stop victory condition
                 {
+                    gameState.SetScore(gameState.targetScoreEasy - 15);  //subtracting 15 to prevent victory condition
                     sprinkler.SetActive(true);
                     advanceStage();
                 }
                 break;
             case 6: // Stage 6: Freeze
+                if (gameState.GetScore() + 15 >= gameState.targetScoreEasy) //TODO: stop victory condition
+                    gameState.SetScore(gameState.targetScoreEasy - 15); //subtracting 15 to prevent victory condition
                 if (sprinklerTimeLeft <= 0)
                     advanceStage();
                 else
