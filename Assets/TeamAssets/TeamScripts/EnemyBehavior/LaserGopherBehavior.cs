@@ -6,7 +6,7 @@ public class LaserGopherBehavior : MonoBehaviour {
     float countDown;
     private GameObject player;
 
-    public GameObject[] spawnLocations;
+    public Vector2[] spawnLocations;
     
     // Underground State variables
     public float undergroundTime;
@@ -91,6 +91,7 @@ public class LaserGopherBehavior : MonoBehaviour {
     
     private void SetRise()
     {
+        Debug.Log("rising at " + transform.position + ": " + name);
         gopherState = GopherState.Rise;
     }
 
@@ -161,7 +162,7 @@ public class LaserGopherBehavior : MonoBehaviour {
             return transform.position;
         }
 
-        var spawnLocation = spawnLocations[Random.Range(0, spawnLocations.Length)].transform.position;
-        return new Vector3(spawnLocation.x, transform.position.y, spawnLocation.z);
+        var spawnLocation = spawnLocations[Random.Range(0, spawnLocations.Length)];
+        return new Vector3(spawnLocation.x, transform.position.y, spawnLocation.y);
     }
 }
