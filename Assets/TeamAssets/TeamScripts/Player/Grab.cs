@@ -59,4 +59,9 @@ public class Grab : MonoBehaviour {
         rigidBody.velocity = device.velocity * throwSpeed;
         rigidBody.angularVelocity = device.angularVelocity;
     }
+
+    public GameObject GetHeldObject()
+    {
+        return heldObject;
+    }
 }

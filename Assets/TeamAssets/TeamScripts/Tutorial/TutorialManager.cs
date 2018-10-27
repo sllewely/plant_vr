@@ -16,8 +16,12 @@ public class TutorialManager : MonoBehaviour {
         "You're ready! Press any button to start the game."
     };
     private int tutorialStage = 0;
-    public SteamVR_TrackedObject leftTrackedObject;
-    public SteamVR_TrackedObject rightTrackedObject;
+
+    public GameObject leftHand;
+    public GameObject rightHand;
+
+    private SteamVR_TrackedObject leftTrackedObject;
+    private SteamVR_TrackedObject rightTrackedObject;
 
     private SteamVR_Controller.Device leftDevice;
     private SteamVR_Controller.Device rightDevice;
@@ -34,7 +38,10 @@ public class TutorialManager : MonoBehaviour {
     void Start () {
         tutorialText.text = tutorialDisplays[tutorialStage];
         nextChime = GetComponent<AudioSource>();
-        //FetchHands();
+        FetchHands();
+        leftTrackedObject = leftHand.GetComponent<SteamVR_TrackedObject>();
+        rightTrackedObject = rightHand.GetComponent<SteamVR_TrackedObject>();
+
         Debug.Log("Start Tutorial");
         flyTransform = tutorialFly.transform;
 
@@ -44,6 +51,7 @@ public class TutorialManager : MonoBehaviour {
     void Update () {
         leftDevice = SteamVR_Controller.Input((int)leftTrackedObject.index);
         rightDevice = SteamVR_Controller.Input((int)rightTrackedObject.index);
+
         switch (tutorialStage)
         {
             case 0:
@@ -67,7 +75,11 @@ public class TutorialManager : MonoBehaviour {
                 advanceStage();
                 break;
             case 2:
-
+                if (leftDevice.GetPress(SteamVR_Controller.ButtonMask.Trigger) 
+                    && (leftHand.GetComponent<Grab>().GetHeldObject() == tutorialFly)
+                    || rightDevice.GetPress(SteamVR_Controller.ButtonMask.Trigger) 
+                    && (rightHand.GetComponent<Grab>().GetHeldObject() == tutorialFly))
+                    advanceStage();
                 break;
             case 3:
                 break;
@@ -93,13 +105,12 @@ public class TutorialManager : MonoBehaviour {
         nextChime.Play();
     }
 
-    //private void FetchHands()
-    //{
-    //    if (leftTrackedObject != null && rightTrackedObject != null) return;
-    //    leftTrackedObject = PlayerHelper.GetLeftHand().GetComponent<SteamVR_TrackedObject>();
-    //    rightTrackedObject = PlayerHelper.GetRightHand().GetComponent<SteamVR_TrackedObject>();
-    //    Debug.Log(leftTrackedObject);
-    //}
+    private void FetchHands()
+    {
+        if (leftHand != null && rightHand != null) return;
+        leftHand = PlayerHelper.GetLeftHand();
+        rightHand = PlayerHelper.GetRightHand();
+    }
 
     private bool anyTrigger()
     {
