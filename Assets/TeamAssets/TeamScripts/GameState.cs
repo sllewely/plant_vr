@@ -9,9 +9,9 @@ public class GameState : MonoBehaviour {
     public int startScore;
     int score;
     int scoreDrain;
-    private int drainDelay;
+    private float drainDelay;
     private bool drainBegin;
-    public int timeBetweenDrain;
+    public float timeBetweenDrain;
 
     int targetScore;
     int health;
@@ -19,13 +19,15 @@ public class GameState : MonoBehaviour {
     public int startingHealthEasy;
     public int scoreDrainEasy;
     public int targetScoreEasy;
-    public int drainDelayEasy;
+    public float drainDelayEasy;
 
     public int startingHealthNormal;
     public int scoreDrainNormal;
     public int targetScoreNormal;
-    public int drainDelayNormal;
-    
+    public float drainDelayNormal;
+
+    private float drainWaitTime = 0;
+
 
     private GameObject feedNeedle;
 
@@ -36,12 +38,23 @@ public class GameState : MonoBehaviour {
         feedNeedle = GameObject.Find("Feed_meter/Needle");
         SetNormalDifficulty();
         RotateNeedle();
-        StartCoroutine(DrainScore());
+        //StartCoroutine(DrainScore());
     }
 
     private void Update()
     {
-        
+        if (!drainBegin)
+        {
+            if (drainWaitTime >= drainDelay)
+            {
+                drainBegin = true;
+                StartCoroutine(DrainScore());
+            }
+            else //counting up rather than down to accommodate changing delay in tutorial
+                drainWaitTime += Time.deltaTime;             
+        }
+
+
         if (Input.GetKeyDown("1"))
         {
             SetEasyDifficulty();
@@ -139,12 +152,7 @@ public class GameState : MonoBehaviour {
     {
         while (true)
         {
-            if (!drainBegin)
-            {
-                drainBegin = true;
-                yield return new WaitForSeconds(drainDelay);
-            }
-            else if (score - scoreDrain >= 0)
+            if (score - scoreDrain >= 0)
             {
                 AddScore(-scoreDrain);
             }

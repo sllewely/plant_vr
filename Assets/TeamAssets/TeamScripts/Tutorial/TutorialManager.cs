@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 
 // TODO: turn off gameover, victory, countdown, death conditions, drain
 // TODO: fix drain
+// TODO: check to see if player succeeds at freeze
 public class TutorialManager : MonoBehaviour {
     public Text tutorialText;
     private string[] tutorialDisplays = new string[] {
