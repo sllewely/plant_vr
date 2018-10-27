@@ -4,6 +4,8 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
+// TODO: turn off gameover, victory, countdown, death conditions, drain
+// TODO: fix drain
 public class TutorialManager : MonoBehaviour {
     public Text tutorialText;
     private string[] tutorialDisplays = new string[] {
