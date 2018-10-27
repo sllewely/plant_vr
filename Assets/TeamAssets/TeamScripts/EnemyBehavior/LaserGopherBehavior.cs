@@ -33,7 +33,7 @@ public class LaserGopherBehavior : MonoBehaviour {
 	    player = PlayerHelper.GetPlayer();
 	    freezeScript = FreezeHelper.GetFreezeScript();
 	    SetUnderground();
-	    sprinkler.Stop();
+	    sprinkler.Pause();
 	}
 
     // Gopher behavior when it detects movement
@@ -45,7 +45,7 @@ public class LaserGopherBehavior : MonoBehaviour {
 
     public void AlertOff()
     {
-        sprinkler.Stop();
+        sprinkler.Pause();
     }
 
 	private void Update () {
