@@ -1,0 +1,189 @@
+fileFormatVersion: 2
+guid: 4f35465b595cc934daf112282372f466
+ModelImporter:
+  serializedVersion: 22
+  fileIDToRecycleName:
+    100000: ABDOMEN
+    100002: armL
+    100004: armR
+    100006: eye
+    100008: eye2
+    100010: group1
+    100012: head
+    100014: head_grp
+    100016: //RootNode
+    100018: neck
+    100020: nose
+    100022: polySurface1
+    100024: skull
+    100026: transform1
+    100028: wing
+    100030: wing1
+    100032: wing2
+    100034: wing3
+    400000: ABDOMEN
+    400002: armL
+    400004: armR
+    400006: eye
+    400008: eye2
+    400010: group1
+    400012: head
+    400014: head_grp
+    400016: //RootNode
+    400018: neck
+    400020: nose
+    400022: polySurface1
+    400024: skull
+    400026: transform1
+    400028: wing
+    400030: wing1
+    400032: wing2
+    400034: wing3
+    2100000: lambert1
+    2300000: ABDOMEN
+    2300002: armL
+    2300004: armR
+    2300006: eye
+    2300008: eye2
+    2300010: neck
+    2300012: nose
+    2300014: polySurface1
+    2300016: wing
+    2300018: wing1
+    2300020: wing2
+    2300022: wing3
+    3300000: ABDOMEN
+    3300002: armL
+    3300004: armR
+    3300006: eye
+    3300008: eye2
+    3300010: neck
+    3300012: nose
+    3300014: polySurface1
+    3300016: wing
+    3300018: wing1
+    3300020: wing2
+    3300022: wing3
+    4300000: ABDOMEN
+    4300002: neck
+    4300004: polySurface1
+    4300006: eye
+    4300008: eye2
+    4300010: nose
+    4300012: wing1
+    4300014: wing
+    4300016: wing2
+    4300018: wing3
+    4300020: armL
+    4300022: armR
+    7400000: moth_idle
+    9500000: //RootNode
+  externalObjects: {}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: moth_idle
+      takeName: Take 001
+      firstFrame: 1
+      lastFrame: 14
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
