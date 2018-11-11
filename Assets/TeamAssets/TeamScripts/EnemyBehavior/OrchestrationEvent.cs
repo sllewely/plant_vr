@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -16,44 +17,23 @@ public class OrchestrationEvent : MonoBehaviour
 	private void Start ()
 	{
 		currentState = OrchestrationState.Start;
-		StartCoroutine(Orchestrate());
+		Invoke(GetFunctionName(ActivateEvents), beginAfterTime);
 	}
-	
-	private IEnumerator Orchestrate()
+
+	private void ActivateEvents()
 	{
-		yield return new WaitForSeconds(beginAfterTime);
 		orchestratables.ForEach(obj => obj.SetActive(true));
-		yield return new WaitForSeconds(duration);
+		Invoke(GetFunctionName(EndEvents), duration);
+	}
+
+	private void EndEvents()
+	{
 		orchestratables.ForEach(obj => obj.SetActive(false));
 		Destroy(gameObject);
-		while (currentState != OrchestrationState.After)
-		{
-			switch (currentState)
-			{
-				case OrchestrationState.Start:
-					Debug.Log(name + " start orchestration");
-					currentState = OrchestrationState.Before;
-					yield return new WaitForSeconds(beginAfterTime);
-					break;
-				case OrchestrationState.Before:
-					Debug.Log(name + " begin objs");
-					currentState = OrchestrationState.During;
-					// start orchestratables
-					
-					yield return new WaitForSeconds(duration);
-					break;
-				case OrchestrationState.During:
-					// end the things
-					Debug.Log(name + " end objs");
-					orchestratables.ForEach(obj => obj.SetActive(false));
-					Debug.Log("deactived orchestration event");
-					gameObject.SetActive(false);
-					break;
-				case OrchestrationState.After:
-					break;
-				
-			}
-		}
-
+	}
+	
+	private static string GetFunctionName(Action method)
+	{
+		return method.Method.Name;
 	}
 }
