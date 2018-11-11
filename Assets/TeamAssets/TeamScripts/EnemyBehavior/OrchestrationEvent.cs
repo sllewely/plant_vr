@@ -5,10 +5,6 @@ using UnityEngine;
 
 public class OrchestrationEvent : MonoBehaviour
 {
-	private enum OrchestrationState { Start, Before, During, After }
-
-	private OrchestrationState currentState;
-	
 	public float beginAfterTime;
 	public float duration;
 	public List<GameObject> orchestratables; 
@@ -16,7 +12,6 @@ public class OrchestrationEvent : MonoBehaviour
 	// Use this for initialization
 	private void Start ()
 	{
-		currentState = OrchestrationState.Start;
 		Invoke(GetFunctionName(ActivateEvents), beginAfterTime);
 	}
 
