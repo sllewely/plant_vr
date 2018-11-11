@@ -36,6 +36,26 @@ public class LaserGopherBehavior : MonoBehaviour {
 	    sprinkler.Stop();
 	}
 
+    void OnEnable()
+    {
+        
+    }
+
+    void OnDisable()
+    {
+        
+    }
+
+    public void BeginEvent()
+    {
+        
+    }
+
+    public void EndEvent()
+    {
+        
+    }
+
     // Gopher behavior when it detects movement
     public void AlertOn()
     {
@@ -49,6 +69,7 @@ public class LaserGopherBehavior : MonoBehaviour {
     }
 
 	private void Update () {
+	    
         countDown -= Time.deltaTime;
         switch (gopherState)
         {
