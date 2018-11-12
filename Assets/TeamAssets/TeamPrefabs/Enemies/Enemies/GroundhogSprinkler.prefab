@@ -868,7 +868,7 @@ MonoBehaviour:
   verticalDepth: -1.5
   rotateSpeed: 50
   freezeTime: 4
-  sprinkler: {fileID: 198781286127873704}
+  sprinkler: {fileID: 1148214068804622}
 --- !u!198 &198781286127873704
 ParticleSystem:
   m_ObjectHideFlags: 1
