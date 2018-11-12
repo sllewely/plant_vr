@@ -2,8 +2,6 @@
 using UnityEngine;
 
 public class LaserGopherBehavior : ExtendMonoBehaviour {
-    private enum GopherState { Underground, Rise, Rotate, Detect, Sink }
-    private GopherState gopherState = GopherState.Underground;
     float countDown;
     private GameObject player;
 
@@ -25,7 +23,7 @@ public class LaserGopherBehavior : ExtendMonoBehaviour {
     // Detect state variables
     public float freezeTime;
     private FreezeTime freezeScript;
-    public ParticleSystem sprinkler;
+    public GameObject sprinkler;
     private bool isPlayerMoving = false;
 
     private void init()
@@ -34,7 +32,6 @@ public class LaserGopherBehavior : ExtendMonoBehaviour {
         player = PlayerHelper.GetPlayer();
         freezeScript = FreezeHelper.GetFreezeScript();
         SetUnderground();
-        sprinkler.Stop();
     }
 
 	private void Start ()
@@ -51,12 +48,12 @@ public class LaserGopherBehavior : ExtendMonoBehaviour {
     public void AlertOn()
     {
         sprinkler.transform.rotation = transform.rotation;
-        sprinkler.Play();
+        sprinkler.SetActive(true);
     }
 
     public void AlertOff()
     {
-        sprinkler.Stop();
+        sprinkler.SetActive(false);
     }
 
     private void SetUnderground()
