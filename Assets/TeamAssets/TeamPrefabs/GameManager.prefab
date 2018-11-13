@@ -53,9 +53,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startScore: 15
-  scoreDrain: 3
   timeBetweenDrain: 2
-  targetScore: 100
+  startingHealthEasy: 3
+  scoreDrainEasy: 2
+  targetScoreEasy: 100
+  drainDelayEasy: 30
+  startingHealthNormal: 3
+  scoreDrainNormal: 2
+  targetScoreNormal: 200
+  drainDelayNormal: 15
 --- !u!114 &114574270347711434
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -67,14 +73,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91b59f8255b639e4fb64fb29992a3f59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeLimit: 90
+  timeLimit: 180
   gameMenu: {fileID: 0}
   menuHand: {fileID: 0}
   gameOver: {fileID: 0}
-  plantLives:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  deadPlantPrefab: {fileID: 1894028854495856, guid: 569b9af3f7d80844a8d49f9e03ff86f7,
-    type: 2}
-  feedNeedle: {fileID: 0}
