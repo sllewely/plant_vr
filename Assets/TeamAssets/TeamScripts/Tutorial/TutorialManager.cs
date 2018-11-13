@@ -17,7 +17,7 @@ public class TutorialManager : MonoBehaviour {
         "    Try catching a fly from the air and eating it    ",
         "When you eat a fly, your food-o-meter will increase.\nFill the meter to win and don't let it run out!\n\nFill the food meter now by catching and eating flies.",
         "Watch out for the Herbicidal Gopher!\n  When he pops up, freeze so he doesn't notice you.  \nIf he sprays you three times, you lose!",
-        " You're ready! Pull both triggers to start the game. "
+        "You're ready! Pull both triggers to end the tutorial."
     };
     private int tutorialStage = 0;
 
