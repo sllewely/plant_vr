@@ -225,7 +225,7 @@ GameObject:
   - component: {fileID: 82087513815799838}
   - component: {fileID: 82749475667300876}
   m_Layer: 0
-  m_Name: GroundhogSprinkler
+  m_Name: FastGroundhogSprinkler
   m_TagString: Prey
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1038,11 +1038,11 @@ MonoBehaviour:
   - {x: -11, y: -35}
   undergroundTime: 6
   faceAwayRot: {x: 0, y: 0, z: 0, w: 0}
-  verticalSpeed: 1
+  verticalSpeed: 2
   verticalHeight: 0.3
   verticalDepth: -1.5
-  rotateSpeed: 50
-  freezeTime: 4
+  rotateSpeed: 90
+  freezeTime: 8
   sprinkler: {fileID: 1148214068804622}
   laserEyes: {fileID: 1642189481893688}
 --- !u!198 &198781286127873704

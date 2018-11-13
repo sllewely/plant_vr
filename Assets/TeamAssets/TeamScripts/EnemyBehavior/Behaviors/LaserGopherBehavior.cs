@@ -26,6 +26,8 @@ public class LaserGopherBehavior : ExtendMonoBehaviour {
     public GameObject sprinkler;
     private bool isPlayerMoving = false;
 
+    public GameObject laserEyes;
+
     private void init()
     {
         faceAwayRot = transform.rotation;
@@ -97,11 +99,13 @@ public class LaserGopherBehavior : ExtendMonoBehaviour {
         
         // Freeze
         freezeScript.BeginFreezeTime(gameObject.GetComponent<LaserGopherBehavior>());
+        laserEyes.SetActive(true);
         InvokeAction(EndFreeze, freezeTime);
     }
 
     private void EndFreeze()
     {
+        laserEyes.SetActive(false);
         freezeScript.EndFreezeTime();
         // and start to sink
         StartCoroutine(Sink());
