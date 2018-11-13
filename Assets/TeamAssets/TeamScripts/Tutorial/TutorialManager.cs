@@ -10,14 +10,14 @@ using UnityEngine.SceneManagement;
 public class TutorialManager : MonoBehaviour {
     public Text tutorialText;
     private string[] tutorialDisplays = new string[] {
-        "Welcome to Nom Nom Garden!\nYou are now a carnivorous plant.\nPull trigger to continue.",
-        "Squeeze and release the triggers \non the front of each controller \nto close and open your hands.",
-        "Now try picking up the fly to your right.",
-        "Eat the fly! \nBring it to your face and \ndon't let go until it's gone.",
-        "Try catching a fly from the air and eating it",
-        "When you eat a fly, your food-o-meter will increase.\nFill the meter to win, and don't let it run out!\n\nFill the food meter now by catching and eating flies.",
-        "Watch out for the Herbicidal Gopher!\nWhen he pops up, freeze so he doesn't notice you.\nIf he sprays you three times, you lose!",
-        "You're ready! Pull both triggers to start the game."
+        "              Welcome to Nom Nom Garden!              \nYou are now a carnivorous plant.\nPull trigger to continue.",
+        "           Squeeze and release the triggers           \non the front of each controller \nto close and open your hands.",
+        "      Now try picking up the fly to your right.      ",
+        "                     Eat the fly!                     \nBring it to your face and \ndon't let go until it's gone.",
+        "    Try catching a fly from the air and eating it    ",
+        "When you eat a fly, your food-o-meter will increase.\nFill the meter to win and don't let it run out!\n\nFill the food meter now by catching and eating flies.",
+        "Watch out for the Herbicidal Gopher!\n  When he pops up, freeze so he doesn't notice you.  \nIf he sprays you three times, you lose!",
+        " You're ready! Pull both triggers to start the game. "
     };
     private int tutorialStage = 0;
 
@@ -147,7 +147,7 @@ public class TutorialManager : MonoBehaviour {
             case 7: // Stage 7: Squeeze both triggers to start game
                 if(leftDevice.GetPress(SteamVR_Controller.ButtonMask.Trigger)
                     && rightDevice.GetPress(SteamVR_Controller.ButtonMask.Trigger))
-                    SceneManager.LoadScene("MASTER_scene", LoadSceneMode.Single);
+                    SceneManager.LoadScene("MENU_scene", LoadSceneMode.Single);
                 break;
             default:
                 Debug.Log("Invalid tutorial stage");

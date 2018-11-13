@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/TeamAssets/TeamScenes/MASTER SCENE/MENU_scene.unity
+    guid: e81c1a963bf092b4fa892ef80b0179d8
+  - enabled: 1
     path: Assets/TeamAssets/TeamScenes/MASTER SCENE/TUTORIAL_scene.unity
     guid: e245b8dab951e1249b27f340ac2b4c28
   - enabled: 1
