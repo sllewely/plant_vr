@@ -14,6 +14,9 @@ public class EnemySpawner : MonoBehaviour {
     public int minWave;
     public int maxWave;
 
+    public float minScalePct;
+    public float maxScalePct;
+
     public List<GameObject> spawnLocations;
 
     private Bounds spawnBounds;
@@ -50,7 +53,9 @@ public class EnemySpawner : MonoBehaviour {
     {
         Vector3 spawnPosition = spawnLocations.Count > 0 ? GetRandomPosFromLocations() : GetRandomFromBox();
 
+        var scale = (maxScalePct == 0) ? 1 : Random.Range(minScalePct * 100, maxScalePct * 100) / 100f;
         GameObject newEnemy = Instantiate(NextEnemy(), spawnPosition, transform.rotation);
+        newEnemy.transform.localScale = newEnemy.transform.localScale * scale;
         Destroy(newEnemy, timeToDestroy);
     }
 
