@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 198216718292167552}
   - component: {fileID: 199700718957962270}
   m_Layer: 0
-  m_Name: Trail Particles
+  m_Name: particletrail
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
