@@ -1,8 +1,10 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 using Debug = UnityEngine.Debug;
 
 public class GameManager : ExtendMonoBehaviour {
@@ -50,7 +52,7 @@ public class GameManager : ExtendMonoBehaviour {
         if (timeLeftInGame < 0)
         {
             Debug.Log("Time is up!");
-            SetGameOver();
+            SetGameOver("Time's up!");
         }
 	}
 
@@ -78,8 +80,10 @@ public class GameManager : ExtendMonoBehaviour {
 //        return lives <= 0;
 //    }
 
-    public void SetGameOver()
+    public void SetGameOver(String gameOverText)
     {
+        Debug.Log(gameOver);
+        gameOver.GetComponent<TextMesh>().text = gameOverText;
         gameOver.SetActive(true);
         GameObject[] spawners = GameObject.FindGameObjectsWithTag("Spawner");
         foreach (var spawner in spawners)

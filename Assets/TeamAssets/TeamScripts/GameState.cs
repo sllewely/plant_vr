@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -120,7 +121,7 @@ public class GameState : MonoBehaviour {
         health -= 1;
         if (health <= 0)
         {
-            GetComponent<GameManager>().SetGameOver();
+            GetComponent<GameManager>().SetGameOver("Too much damage!");
         }
     }
 
@@ -159,7 +160,7 @@ public class GameState : MonoBehaviour {
             else
             {
                 AddScore(-score);
-                GameOver();   
+                GameOver("You starved...");   
             }
             
             yield return new WaitForSeconds(timeBetweenDrain);
@@ -168,13 +169,12 @@ public class GameState : MonoBehaviour {
 
     private void VictoryOn()
     {
-        GameObject.Find("ScreenUi/WinText").GetComponent<Text>().text = "Victory!";
-        GameOver();
+        GameOver("You won!!!");
     }
 
-    private void GameOver()
+    private void GameOver(String gameOverText)
     {
         StopCoroutine(DrainScore());
-        GetComponent<GameManager>().SetGameOver();
+        GetComponent<GameManager>().SetGameOver(gameOverText);
     }
 }
