@@ -118,6 +118,7 @@ public class LaserGopherBehavior : ExtendMonoBehaviour {
             transform.Translate(Vector3.down * verticalSpeed * Time.deltaTime, Space.World);
             yield return null;
         }
+        Destroy(gameObject);
     }
 
     private Vector3 NewSpawnLocation()

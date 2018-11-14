@@ -26,7 +26,7 @@ public class EnemySpawner : MonoBehaviour {
 	// Use this for initialization
 	void Start ()
 	{
-	    Init();
+//	    Init();
 	}
 
     void OnEnable()
@@ -67,6 +67,7 @@ public class EnemySpawner : MonoBehaviour {
         var scale = (maxScalePct == 0) ? 1 : Random.Range(minScalePct * 100, maxScalePct * 100) / 100f;
         GameObject newEnemy = Instantiate(NextEnemy(), spawnPosition, transform.rotation);
         newEnemy.transform.localScale = newEnemy.transform.localScale * scale;
+        
         Destroy(newEnemy, timeToDestroy);
     }
 
