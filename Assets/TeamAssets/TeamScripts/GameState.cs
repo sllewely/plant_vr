@@ -174,6 +174,7 @@ public class GameState : MonoBehaviour {
 
     private void GameOver()
     {
+        StopCoroutine(DrainScore());
         GetComponent<GameManager>().SetGameOver();
     }
 }
