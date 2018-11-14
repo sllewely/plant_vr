@@ -1,9 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Debug = UnityEngine.Debug;
 
-public class GameManager : MonoBehaviour {
+public class GameManager : ExtendMonoBehaviour {
 
     public int timeLimit;
     private float timeLeftInGame;
@@ -89,6 +91,8 @@ public class GameManager : MonoBehaviour {
         {
             Destroy(enemy);
         }
+        
+        InvokeAction(SwitchToMenu, 5);
     }
 
     void RestartGame()
@@ -101,5 +105,10 @@ public class GameManager : MonoBehaviour {
         bool isMenuActice = gameMenu.activeSelf;
         gameMenu.SetActive(!isMenuActice);
         menuHand.SetActive(!isMenuActice);
+    }
+
+    private void SwitchToMenu()
+    {
+        SceneManager.LoadScene("MENU_scene", LoadSceneMode.Single);
     }
 }
