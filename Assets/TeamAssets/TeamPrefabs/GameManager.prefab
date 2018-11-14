@@ -56,12 +56,12 @@ MonoBehaviour:
   timeBetweenDrain: 2
   startingHealthEasy: 3
   scoreDrainEasy: 2
-  targetScoreEasy: 100
+  targetScoreEasy: 300
   drainDelayEasy: 30
   startingHealthNormal: 3
-  scoreDrainNormal: 2
-  targetScoreNormal: 200
-  drainDelayNormal: 15
+  scoreDrainNormal: 5
+  targetScoreNormal: 300
+  drainDelayNormal: 20
 --- !u!114 &114574270347711434
 MonoBehaviour:
   m_ObjectHideFlags: 1
