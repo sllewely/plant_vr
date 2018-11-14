@@ -24,12 +24,23 @@ public class EnemySpawner : MonoBehaviour {
     public GameObject[] enemies;
 
 	// Use this for initialization
-	void Start () {
+	void Start ()
+	{
+	    Init();
+	}
+
+    void OnEnable()
+    {
+        Init();
+    }
+
+    private void Init()
+    {
         spawnBounds = GetComponent<Collider>().bounds;
         waveCount = Random.Range(minWave, maxWave);
         StartCoroutine(Spawner());
     }
-
+    
     IEnumerator Spawner()
     {
         for ( ; ; )

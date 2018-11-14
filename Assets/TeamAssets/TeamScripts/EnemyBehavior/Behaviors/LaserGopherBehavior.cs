@@ -68,7 +68,7 @@ public class LaserGopherBehavior : ExtendMonoBehaviour {
     {
         // Underground
         transform.rotation = faceAwayRot;
-        transform.position = NewSpawnLocation();
+        // transform.position = NewSpawnLocation();
         yield return new WaitForSeconds(undergroundTime);
         Debug.Log("rise");
         while (transform.position.y < verticalHeight)
