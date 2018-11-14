@@ -28,8 +28,11 @@ public class LaserGopherBehavior : ExtendMonoBehaviour {
 
     public GameObject laserEyes;
 
+    private AudioSource moveSound;
+
     private void init()
     {
+        moveSound = GetComponent<AudioSource>();
         faceAwayRot = transform.rotation;
         player = PlayerHelper.GetPlayer();
         freezeScript = FreezeHelper.GetFreezeScript();
@@ -71,6 +74,7 @@ public class LaserGopherBehavior : ExtendMonoBehaviour {
         // transform.position = NewSpawnLocation();
         yield return new WaitForSeconds(undergroundTime);
         Debug.Log("rise");
+        moveSound.Play();
         while (transform.position.y < verticalHeight)
         {
             transform.Translate(Vector3.up * verticalSpeed * Time.deltaTime, Space.World);
@@ -96,7 +100,8 @@ public class LaserGopherBehavior : ExtendMonoBehaviour {
             transform.rotation = rotation;
             yield return null;
         }
-        
+
+        moveSound.Stop();
         // Freeze
         freezeScript.BeginFreezeTime(gameObject.GetComponent<LaserGopherBehavior>());
         laserEyes.SetActive(true);
