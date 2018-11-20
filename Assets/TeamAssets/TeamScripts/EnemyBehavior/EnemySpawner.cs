@@ -23,11 +23,6 @@ public class EnemySpawner : MonoBehaviour {
 
     public GameObject[] enemies;
 
-	// Use this for initialization
-	void Start ()
-	{
-//	    Init();
-	}
 
     void OnEnable()
     {
@@ -87,5 +82,12 @@ public class EnemySpawner : MonoBehaviour {
     Vector3 GetRandomPosFromLocations()
     {
         return spawnLocations[Random.Range(0, spawnLocations.Count)].transform.position;
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawSphere(transform.position, .2f);
+        Gizmos.DrawLine(transform.position, (transform.forward * 3) + transform.position);
     }
 }
