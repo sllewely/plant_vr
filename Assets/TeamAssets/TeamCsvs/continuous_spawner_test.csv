@@ -1,0 +1,5 @@
+# continuous spawner scene test
+on, ContinuousSpawner, 5
+off, ContinuousSpawner, 10
+on, ContinuousSpawner, 20
+off, ContinuousSpawner, 30

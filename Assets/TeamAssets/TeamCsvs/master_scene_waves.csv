@@ -1,0 +1,13 @@
+# on/off, time at, spawner
+on, 3, SkullSpawner
+off, 28, SkullSpawner
+on, 20, GroundhogSpawner
+off, 25, GroundhogSpawner
+# second wave
+on, 35, MothSpawner2
+on, 35, SkullSpawner2
+on, 35, SkullSpawner3
+off, 90, MothSpawner2
+off, 90, SkullSpawner2
+off, 90, SkullSpawner3
+# ...
