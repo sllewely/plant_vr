@@ -8,7 +8,7 @@ using Valve.VR.InteractionSystem;
 public class CsvEnemyOrchestrator : ExtendMonoBehaviour
 {
 	readonly Regex COMMENT = new Regex(@"^#");
-	readonly Regex INSTRUCTION = new Regex(@"^(?<on>(on)|(off)), ?(?<spawnerName>\b\w+\b), ?(?<time>\b\d+\b) ?$");
+	readonly Regex INSTRUCTION = new Regex(@"^(?<on>(on)|(off)), ?(?<time>\b\d+\b)(, ?(?<spawnerName>\b\w+\b))+ ?$");
 
 	public String orchestrationFile;
 	
@@ -19,11 +19,6 @@ public class CsvEnemyOrchestrator : ExtendMonoBehaviour
 		Debug.Log(Path());
 		BuildSpawnerDict();
 		ProcessFile();
-		foreach (var spawnerName in spawners.Keys)
-		{
-			Debug.Log("spawner: " + spawnerName);
-		}
-
 	}
 
 	private void BuildSpawnerDict()
@@ -44,20 +39,45 @@ public class CsvEnemyOrchestrator : ExtendMonoBehaviour
 			{
 				continue;
 			}
-		
-			Match match = INSTRUCTION.Match(line);
-			var onSetting = match.Groups["on"].Equals("on");
-			var spawnerName = match.Groups["spawnerName"];
-			var time = match.Groups["time"];
-			
-			Debug.Log("Line found match : " + spawnerName);
 
+			if (!INSTRUCTION.IsMatch(line))
+			{
+				Debug.Log("no match from line: " + line);
+				continue;
+			}
+			CreateEventsFromMatch(INSTRUCTION.Match(line));
 		}
 	}
 
-	private void CreateEvent(bool onSetting, String spawnerName, float time)
+	private void CreateEventsFromMatch(Match match)
 	{
-		
+		bool onSetting = match.Groups["on"].Value.Equals("on");
+		var spawnerNames = match.Groups["spawnerName"].Captures;
+		float time = float.Parse(match.Groups["time"].Value);
+		foreach (Capture spawnerName in spawnerNames)
+		{
+			if (spawners.ContainsKey(spawnerName.Value))
+			{
+				StartCoroutine(StartSpawner(spawners[spawnerName.Value], time, onSetting));
+			}
+			else
+			{
+				Debug.Log("spawner not found: " + spawnerName);
+			}
+		}
+	}
+
+	private IEnumerator StartSpawner(Orchestratable spawner, float time, bool onSetting)
+	{
+		yield return new WaitForSeconds(time);
+		if (onSetting)
+		{
+			spawner.BeginEvent();
+		}
+		else
+		{
+			spawner.EndEvent();
+		}
 	}
 
 	private String Path()
