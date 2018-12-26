@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-interface Orchestratable
+public interface Orchestratable
 {
 
     void BeginEvent();
