@@ -5,10 +5,12 @@ using UnityEngine;
 
 public class EnemyOrchestrator : MonoBehaviour {
 	
+	
 	private Dictionary<String, Orchestratable> spawners = new Dictionary<String, Orchestratable>();
 	
 	private void BuildSpawnerDict()
 	{
+		// Or get Spawners from children of child component Spawners
 		var orchestratables = GameObject.FindGameObjectsWithTag("Spawner");
 		foreach (var spawner in orchestratables)
 		{
