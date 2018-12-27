@@ -2,17 +2,18 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WaveEvent : MonoBehaviour
+public class WaveEvent
 {
 	public bool on;
 	public int eventTime;
-	public Orchestratable[] spawners;
+//	public Orchestratable[] spawners;
+	public string[] spawnerNames;
 
-	public WaveEvent(bool on, int eventTime, Orchestratable[] spawners)
+	public WaveEvent(bool on, int eventTime, string[] spawnerNames)
 	{
 		this.on = on;
 		this.eventTime = eventTime;
-		this.spawners = spawners;
+		this.spawnerNames = spawnerNames;
 	}
 
 }

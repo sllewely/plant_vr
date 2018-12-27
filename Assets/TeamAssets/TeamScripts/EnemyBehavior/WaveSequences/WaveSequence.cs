@@ -2,14 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WaveSequence : ScriptableObject
+public abstract class WaveSequence : MonoBehaviour
 {
 
-    public WaveEvent[] waveEvents;
+    // todo
+    public int offsetTime;
+    public List<WaveEvent> waveEvents = new List<WaveEvent>();
     
     public WaveSequence()
     {
-        
+        Init();
     }
 
+    protected abstract void Init();
 }
