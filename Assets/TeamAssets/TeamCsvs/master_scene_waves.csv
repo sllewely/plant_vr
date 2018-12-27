@@ -1,11 +1,18 @@
 # on/off, time at, spawner
+# first wave
 on, 3, SkullSpawner
 off, 28, SkullSpawner
 on, 20, GroundhogSpawner
 off, 25, GroundhogSpawner
 # second wave
-on, 35, MothSpawner2, SkullSpawner2, SkullSpawner3
+on, 35, MothSpawner_B, SkullSpawner2, SkullSpawner3
 off, 90, MothSpawner2
 off, 90, SkullSpawner2
 off, 90, SkullSpawner3
-# ...
+on, 60, GroundhogSpawner
+off, 80, GroundhogSpawner
+# Third wave
+on, 80, SkullSpawner, MothSpawner_B, MothSpawner
+off, 100, SkullSpawner, MothSpawnerB, MothSpawner
+on, 90, HardGroundhogSpawner
+off, 125, HardGroundhogSpawner
