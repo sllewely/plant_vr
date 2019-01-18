@@ -5,6 +5,9 @@ using UnityEngine;
 public class ShroomyBehavior : MonoBehaviour
 {
 	private Animator anim;
+	private int toIdleHash = Animator.StringToHash("toIdle");
+	private int toWalkHash = Animator.StringToHash("toWalk");
+	private int toGrabbedHash = Animator.StringToHash("toGrabbed");
 
 	// Use this for initialization
 	void Start ()
@@ -15,44 +18,35 @@ public class ShroomyBehavior : MonoBehaviour
 	
 	// Update is called once per frame
 	void Update () {
-		if (Input.GetKeyDown(KeyCode.H))
+		if (Input.GetKeyDown(KeyCode.J))
 		{
 			toWalk();
 		}
 
-		if (Input.GetKeyDown(KeyCode.J))
-		{
-			toStop();
-		}
-
 		if (Input.GetKeyDown(KeyCode.K))
 		{
-			toPickedUp();
+			toIdle();
 		}
 
 		if (Input.GetKeyDown(KeyCode.L))
 		{
-			toDropped();
+			toGrabbed();
 		}
+
 	}
 
 	private void toWalk()
 	{
-		anim.SetBool("StartWalkCond", true);
+		anim.SetTrigger(toWalkHash);
 	}
 
-	private void toStop()
+	private void toIdle()
 	{
-		anim.SetBool("StopWalkCond", true);
+		anim.SetTrigger(toIdleHash);
 	}
 
-	private void toPickedUp()
+	private void toGrabbed()
 	{
-		anim.SetBool("GrabbedCond", true);
-	}
-
-	private void toDropped()
-	{
-		anim.SetBool("isDropped", true);
+		anim.SetTrigger(toGrabbedHash);
 	}
 }
